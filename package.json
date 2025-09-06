@@ -1,0 +1,35 @@
+{
+  "name": "dslmapper",
+  "version": "0.0.0",
+  "description": "A mapping project for Dark and Shattered Lands",
+  "main": "./dist/app.js",
+  "private": true,
+  "workspaces": [
+    "game-mapping"
+  ],
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "dev": "npm run dev -w game-mapping",
+    "preview": "npm run preview -w game-mapping",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:all": "npm install && npm install -w game-mapping"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TournyMasterBot/DslMapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TournyMasterBot/DslMapper/issues"
+  },
+  "homepage": "https://github.com/TournyMasterBot/DslMapper#readme",
+  "dependencies": {
+    "typescript": "^5.9.2"
+  }
+}

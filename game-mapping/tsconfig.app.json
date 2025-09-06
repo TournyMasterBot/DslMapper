@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": "src",
+    "paths": {
+      "@state/*": ["state/*"],
+      "@components/*": ["components/*"],
+    },
+    "types": ["vite/client"],
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "index.html"]
+}
