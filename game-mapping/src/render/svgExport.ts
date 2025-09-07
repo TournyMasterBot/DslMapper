@@ -1,6 +1,6 @@
 // src/render/svgExport.ts
 import { MapDocV1, Room, Direction, ExitDef, TerrainKind } from "../types";
-import { TERRAIN_FILL } from "./terrainPalette";
+import { TERRAIN_FILL, TERRAIN_ORDER } from "./terrainPalette";
 import { dirUnit, reverseDir } from "./dir";
 
 /** Geometry (keep in sync with OctRenderer) */
@@ -50,26 +50,45 @@ function arrowHeadPath(x: number, y: number, ux: number, uy: number) {
   return `M ${tipX} ${tipY} L ${leftX} ${leftY} L ${rightX} ${rightY} Z`;
 }
 
-type RenderOpts = {
-  /** Optional explicit canvas size (otherwise auto-fit to content bounds + padding) */
-  width?: number;
-  height?: number;
-  /** Background color (default dark) */
-  background?: string;
+type LegendDims = {
+  width: number;
+  height: number;
+  cols: number;
+  rows: number;
+  padH: number;
+  padV: number;
+  rowH: number;
+  colW: number;
+  hdrH: number;
 };
 
-/**
- * Create an SVG markup string for a single Area and vertical level.
- * Matches the visual OctRenderer (fills, edges, arrowheads, primary outline).
- */
+function measureLegend(): LegendDims {
+  const padV = 12, padH = 12;
+  const rowH = 18, colW = 132, hdrH = 22;
+  const items = TERRAIN_ORDER.length;
+  const cols = items > 7 ? 2 : 1;
+  const rows = Math.ceil(items / cols);
+  const width = padH * 2 + cols * colW;
+  const height = padV * 2 + hdrH + rows * rowH;
+  return { width, height, cols, rows, padH, padV, rowH, colW, hdrH };
+}
+
+type RenderOpts = {
+  width?: number;
+  height?: number;
+  background?: string;
+  includeLegend?: boolean;
+  legendCorner?: "tl" | "tr" | "bl" | "br";
+  legendMargin?: number;
+};
+
 export function renderAreaSVG(
   doc: MapDocV1,
   areaId: string,
   level: number,
   opts: RenderOpts = {}
 ): string {
-  const allRooms = Object.values(doc.rooms);
-  const rooms = allRooms.filter(
+  const rooms = Object.values(doc.rooms).filter(
     (r) => r.category?.areaId === areaId && (r.coords?.vz ?? 0) === level
   );
   if (rooms.length === 0) {
@@ -88,12 +107,8 @@ export function renderAreaSVG(
     };
   }
 
-  // Decide canvas size. If not specified, auto-fit to bounds with padding.
-  const pitchX = TILE + GAP;
-  const pitchY = TILE + GAP;
+  // Base auto-fit size from content bounds
   const pad = 48;
-
-  // compute logical px positions to get bounds
   let minPxX = Infinity, maxPxX = -Infinity, minPxY = Infinity, maxPxY = -Infinity;
   rooms.forEach((r) => {
     const p = gridToPx(r.coords.cx, r.coords.cy, center, 1000, 1000); // temp
@@ -102,26 +117,61 @@ export function renderAreaSVG(
     if (p.y < minPxY) minPxY = p.y;
     if (p.y > maxPxY) maxPxY = p.y;
   });
-  const autoW = Math.max(320, (maxPxX - minPxX) + pad * 2 + TILE);
-  const autoH = Math.max(240, (maxPxY - minPxY) + pad * 2 + TILE);
-  const width = opts.width ?? Math.round(autoW);
-  const height = opts.height ?? Math.round(autoH);
+  const contentW = (maxPxX - minPxX) + TILE;
+  const contentH = (maxPxY - minPxY) + TILE;
+  let width = opts.width ?? Math.max(320, Math.round(contentW + pad * 2));
+  let height = opts.height ?? Math.max(240, Math.round(contentH + pad * 2));
 
-  // We'll re-center using a virtual center at canvas middle.
-  const canvasCenter = { cx: center.cx, cy: center.cy };
+  // Legend reservation
+  const includeLegend = opts.includeLegend !== false;
+  const corner = opts.legendCorner ?? "tl";
+  const legendMargin = opts.legendMargin ?? 12;
+
+  let legendDims: LegendDims | null = null;
+  let legendX = 0, legendY = 0;
+  let topBand = 0; // amount of reserved space at top
+  let bottomBand = 0;
+
+  if (includeLegend) {
+    legendDims = measureLegend();
+    const band = legendDims.height + legendMargin;
+
+    if (corner === "tl" || corner === "tr") {
+      topBand = band;
+    } else {
+      bottomBand = band;
+    }
+    height += band;
+
+    // Legend position within its band
+    if (corner === "tl") {
+      legendX = 12; legendY = 12;
+    } else if (corner === "tr") {
+      legendX = Math.max(12, width - legendDims.width - 12); legendY = 12;
+    } else if (corner === "bl") {
+      legendX = 12; legendY = height - legendDims.height - 12;
+    } else {
+      legendX = Math.max(12, width - legendDims.width - 12);
+      legendY = height - legendDims.height - 12;
+    }
+  }
+
   const bg = opts.background ?? "#0f0f10";
 
-  // Build lookup for rooms by vnum
+  // Compute positions centered in *content box* (excluding reserved bands)
+  const contentHeight = height - topBand - bottomBand;
+  const contentWidth = width; // we only reserve vertical bands
+
   const byVnum = new Map<string, Room>();
   rooms.forEach((r) => byVnum.set(r.vnum, r));
 
-  // Precompute positions
   const pos = new Map<string, { x: number; y: number }>();
   rooms.forEach((r) => {
-    pos.set(r.vnum, gridToPx(r.coords.cx, r.coords.cy, canvasCenter, width, height));
+    const p = gridToPx(r.coords.cx, r.coords.cy, center, contentWidth, contentHeight);
+    pos.set(r.vnum, { x: p.x, y: p.y + topBand }); // shift down by top band
   });
 
-  // Edges (use same logic as OctRenderer)
+  // Edges
   type Edge = { from: Room; to: Room; dir: Direction; oneWay: boolean };
   const edges: Edge[] = [];
   for (const r of rooms) {
@@ -138,7 +188,6 @@ export function renderAreaSVG(
   for (const e of edges) {
     const a = pos.get(e.from.vnum)!;
     const b = pos.get(e.to.vnum)!;
-
     const dx = b.x - a.x, dy = b.y - a.y;
     const { ux, uy } = dirUnit(dx, dy);
     const inset = TILE * 0.35;
@@ -149,12 +198,9 @@ export function renderAreaSVG(
     const targetHasReverse =
       !!e.to.exits?.[rev] && e.to.exits[rev]?.to === e.from.vnum;
 
-    // forward solid
     edgeMarkup += `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>`;
-    // arrowhead
     edgeMarkup += `<path d="${arrowHeadPath(bx, by, ux, uy)}" fill="rgba(255,255,255,0.85)"/>`;
 
-    // implied dotted reverse
     if (!e.oneWay && !targetHasReverse) {
       edgeMarkup += `<line x1="${bx}" y1="${by}" x2="${ax}" y2="${ay}" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-dasharray="4 4"/>`;
     }
@@ -166,7 +212,7 @@ export function renderAreaSVG(
     const { x, y } = pos.get(r.vnum)!;
     const isPrimary = !!primaryVnum && r.vnum === primaryVnum;
     const sector: TerrainKind = (r.sector as TerrainKind) ?? TerrainKind.Unknown;
-    const fill = (TERRAIN_FILL[sector] ?? "#555") + "E6"; // ~90%
+    const fill = (TERRAIN_FILL[sector] ?? "#555") + "E6";
 
     tileMarkup += `
       <polygon points="${octPoints(x, y, TILE)}"
@@ -174,21 +220,50 @@ export function renderAreaSVG(
         stroke="${isPrimary ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.22)"}"
         stroke-width="${isPrimary ? 2 : 1}" />
       <text x="${x}" y="${y + 4}" text-anchor="middle" font-size="12" fill="#ddd"
-        font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">${(r.label || r.vnum)
-      .toString()
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .slice(0, 12)}</text>`;
+        font-family="ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">${escapeText((r.label || r.vnum).toString()).slice(0, 12)}</text>`;
   }
 
-  const title =
-    (doc.meta.catalog?.areas?.[areaId]?.name || areaId) + ` (vz=${level})`;
+  // Legend panel (drawn in its reserved band)
+  let legendMarkup = "";
+  if (includeLegend && legendDims) {
+    const L = legendDims;
+    legendMarkup += `<g transform="translate(${legendX},${legendY})">
+      <rect x="0" y="0" width="${L.width}" height="${L.height}" rx="10" ry="10"
+        fill="rgba(20,20,24,0.92)" stroke="rgba(255,255,255,0.12)"/>
+      <text x="${L.padH}" y="${L.padV + 14}" fill="#ddd" font-size="12" font-weight="600"
+        font-family="ui-sans-serif,system-ui">Terrain</text>`;
+
+    for (let c = 0; c < L.cols; c++) {
+      for (let r = 0; r < L.rows; r++) {
+        const idx = c * L.rows + r;
+        if (idx >= TERRAIN_ORDER.length) break;
+        const t = TERRAIN_ORDER[idx];
+        const sw = TERRAIN_FILL[t] + "E6";
+        const x = L.padH + c * L.colW;
+        const y = L.padV + L.hdrH + r * L.rowH;
+
+        legendMarkup += `
+          <circle cx="${x + 6}" cy="${y + 6}" r="6"
+            fill="${sw}" stroke="rgba(255,255,255,0.22)"/>
+          <text x="${x + 18}" y="${y + 10}" fill="#ddd" font-size="12"
+            font-family="ui-sans-serif,system-ui">${escapeText(t)}</text>`;
+      }
+    }
+    legendMarkup += `</g>`;
+  }
+
+  const title = (doc.meta.catalog?.areas?.[areaId]?.name || areaId) + ` (vz=${level})`;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <rect width="100%" height="100%" fill="${bg}"/>
   <g>${edgeMarkup}</g>
   <g>${tileMarkup}</g>
-  <title>${title.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</title>
+  ${legendMarkup}
+  <title>${escapeText(title)}</title>
 </svg>`;
+}
+
+function escapeText(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
