@@ -135,7 +135,7 @@ export interface Interaction {
 export interface Room {
   vnum: string
   label?: string
-  sector?: string
+  sector?: TerrainKind   // strict type now
   coords: Coords
   movement?: { requires?: string[]; bans?: string[] }
   flags?: RoomFlags
@@ -166,3 +166,26 @@ export type MapDoc = MapDocV1
 
 /** Patch shape for updating a room. */
 export type RoomPatch = Partial<Omit<Room, 'vnum'>>
+
+export const enum TerrainKind {
+  Unknown  = "unknown",
+  Indoors  = "indoors",
+  City     = "city",
+  Desert   = "desert",
+  VeryIcy  = "very_icy",
+  Hills    = "hills",
+  Forest   = "forest",
+  Fields   = "fields",
+  Tundra   = "tundra",
+}
+export const TERRAIN_OPTIONS: TerrainKind[] = [
+  TerrainKind.Unknown,
+  TerrainKind.Indoors,
+  TerrainKind.City,
+  TerrainKind.Desert,
+  TerrainKind.VeryIcy,
+  TerrainKind.Hills,
+  TerrainKind.Forest,
+  TerrainKind.Fields,
+  TerrainKind.Tundra,
+];

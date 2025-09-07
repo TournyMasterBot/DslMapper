@@ -90,13 +90,33 @@ function reducer(state: State, action: Action): State {
     }
 
     case "PATCH_ROOM": {
-      const r = state.doc.rooms[action.vnum];
-      if (!r) return state;
-      const patched = { ...r, ...action.patch };
+      const room = state.doc.rooms[action.vnum];
+      if (!room) return state;
+      const merged: Room = {
+        ...room,
+        ...action.patch,
+        coords: { ...room.coords, ...(action.patch as any).coords },
+      };
       const doc = {
         ...state.doc,
-        rooms: { ...state.doc.rooms, [action.vnum]: patched },
+        rooms: { ...state.doc.rooms, [action.vnum]: merged },
       };
+
+      // If we just assigned/changed area and that area has no primary yet, set this room as primary
+      const areaId = merged.category?.areaId;
+      if (areaId) {
+        const cat = doc.meta.catalog || {
+          worlds: {},
+          continents: {},
+          areas: {},
+        };
+        const area = cat.areas[areaId];
+        if (area && !area.primaryVnum) {
+          cat.areas[areaId] = { ...area, primaryVnum: merged.vnum };
+          doc.meta = { ...doc.meta, catalog: cat };
+        }
+      }
+
       bumpRevision(doc);
       return { ...state, doc };
     }

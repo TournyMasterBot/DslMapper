@@ -22,6 +22,30 @@ const DELTA: Record<
   NW: [-1, -1],
 }
 
+// Map reverse directions (cardinals/diagonals + U/D)
+export function reverseDir(d: Direction): Direction {
+  switch (d) {
+    case 'N':  return 'S'
+    case 'NE': return 'SW'
+    case 'E':  return 'W'
+    case 'SE': return 'NW'
+    case 'S':  return 'N'
+    case 'SW': return 'NE'
+    case 'W':  return 'E'
+    case 'NW': return 'SE'
+    case 'U':  return 'D'
+    case 'D':  return 'U'
+    default:   return d
+  }
+}
+
+// Unit-ish direction vector in screen (grid) space for drawing offsets
+// Uses the same dx/dy notion as your dirToGrid (flat-top oct octants)
+export function dirUnit(dx: number, dy: number): { ux: number; uy: number } {
+  const len = Math.hypot(dx, dy) || 1
+  return { ux: dx / len, uy: dy / len }
+}
+
 /**
  * Convert a direction into a coordinate delta [dx, dy, dz].
  * U/D change vertical level only.
