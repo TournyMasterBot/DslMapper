@@ -32,16 +32,18 @@ function gridToPx(
   return { x, y };
 }
 
-function TilePolygon({
+function Oct({
   x,
   y,
   size,
+  label,
   isPrimary,
   sectorFill,
 }: {
   x: number;
   y: number;
   size: number;
+  label: string;
   isPrimary: boolean;
   sectorFill: string;
 }) {
@@ -60,20 +62,17 @@ function TilePolygon({
     .map((p) => p.join(","))
     .join(" ");
   return (
-    <polygon
-      points={pts}
-      fill={`${sectorFill}E6`}
-      stroke={isPrimary ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.22)"}
-      strokeWidth={isPrimary ? 2 : 1}
-    />
-  );
-}
-
-function TileLabel({ x, y, label }: { x: number; y: number; label: string }) {
-  return (
-    <text x={x} y={y + 4} textAnchor="middle" fontSize="12" fill="#ddd">
-      {label}
-    </text>
+    <>
+      <polygon
+        points={pts}
+        fill={`${sectorFill}E6`} // ~90% opacity
+        stroke={isPrimary ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.22)"}
+        strokeWidth={isPrimary ? 2 : 1}
+      />
+      <text x={x} y={y + 4} textAnchor="middle" fontSize="12" fill="#ddd">
+        {label}
+      </text>
+    </>
   );
 }
 
@@ -129,7 +128,7 @@ export default function OctRenderer({
     const tryCols = (cols: number) => {
       const rows = Math.ceil(items / cols);
       const height = LEGEND_PAD_V * 2 + LEGEND_HDR_H + rows * LEGEND_ROW_H;
-      return { cols, rows, height };
+      return { cols, height };
     };
     const one = tryCols(1);
     if (one.height <= size.h - 36) return one.cols;
@@ -198,13 +197,89 @@ export default function OctRenderer({
       height="100%"
       style={{ display: "block", background: "#0f0f10" }}
     >
-      {/* LEGEND UNDERLAY */}
-      <foreignObject
-        x={legendX}
-        y={12}
-        width={LEGEND_BTN_W}
-        height={LEGEND_BTN_H}
-      >
+      {/* tiles (underneath edges) */}
+      {rooms.map((r) => {
+        const { x, y } = gridToPx(
+          r.coords.cx,
+          r.coords.cy,
+          center,
+          size.w,
+          size.h
+        );
+        const sector: TerrainKind = r.sector ?? TerrainKind.Unknown;
+        const sectorFill = TERRAIN_FILL[sector];
+        const isPrimary = !!primaryVnum && r.vnum === primaryVnum;
+        return (
+          <g key={r.vnum}>
+            <Oct
+              x={x}
+              y={y}
+              size={TILE}
+              label={r.label || r.vnum}
+              isPrimary={isPrimary}
+              sectorFill={sectorFill}
+            />
+          </g>
+        );
+      })}
+
+      {/* edges (above tiles) */}
+      {edges.map((e, i) => {
+        const a = gridToPx(
+          e.from.coords.cx,
+          e.from.coords.cy,
+          center,
+          size.w,
+          size.h
+        );
+        const b = gridToPx(
+          e.to.coords.cx,
+          e.to.coords.cy,
+          center,
+          size.w,
+          size.h
+        );
+        const dx = b.x - a.x,
+          dy = b.y - a.y;
+        const { ux, uy } = dirUnit(dx, dy);
+        const inset = TILE * 0.35;
+        const ax = a.x + ux * inset,
+          ay = a.y + uy * inset;
+        const bx = b.x - ux * inset,
+          by = b.y - uy * inset;
+
+        const rev = reverseDir(e.dir);
+        const targetHasReverse =
+          !!e.to.exits?.[rev] && e.to.exits[rev]?.to === e.from.vnum;
+
+        return (
+          <g key={i}>
+            <line
+              x1={ax}
+              y1={ay}
+              x2={bx}
+              y2={by}
+              stroke="rgba(255,255,255,0.9)"
+              strokeWidth={2}
+            />
+            <ArrowHead x={bx} y={by} ux={ux} uy={uy} />
+            {!e.oneWay && !targetHasReverse && (
+              <line
+                x1={bx}
+                y1={by}
+                x2={ax}
+                y2={ay}
+                stroke="rgba(255,255,255,0.7)"
+                strokeWidth={2}
+                strokeDasharray="4 4"
+              />
+            )}
+          </g>
+        );
+      })}
+
+      {/* legend panel (beneath everything else visually) */}
+      <foreignObject x={legendX} y={12} width={LEGEND_BTN_W} height={LEGEND_BTN_H}>
         <div
           style={{
             width: LEGEND_BTN_W,
@@ -266,9 +341,7 @@ export default function OctRenderer({
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: `repeat(${legendCols}, ${
-                LEGEND_COL_W - 8
-              }px)`,
+              gridTemplateColumns: `repeat(${legendCols}, ${LEGEND_COL_W - 8}px)`,
               columnGap: 8,
               rowGap: 6,
             }}
@@ -317,61 +390,6 @@ export default function OctRenderer({
           </div>
         </div>
       </foreignObject>
-
-      {/* POLYGONS */}
-      {rooms.map((r) => {
-        const { x, y } = gridToPx(r.coords.cx, r.coords.cy, center, size.w, size.h);
-        const sector: TerrainKind = r.sector ?? TerrainKind.Unknown;
-        const sectorFill = TERRAIN_FILL[sector];
-        const isPrimary = !!primaryVnum && r.vnum === primaryVnum;
-        return (
-          <TilePolygon
-            key={`poly-${r.vnum}`}
-            x={x}
-            y={y}
-            size={TILE}
-            isPrimary={isPrimary}
-            sectorFill={sectorFill}
-          />
-        );
-      })}
-
-      {/* EDGES ABOVE POLYGONS */}
-      {edges.map((e, i) => {
-        const a = gridToPx(e.from.coords.cx, e.from.coords.cy, center, size.w, size.h);
-        const b = gridToPx(e.to.coords.cx, e.to.coords.cy, center, size.w, size.h);
-        const dx = b.x - a.x, dy = b.y - a.y;
-        const { ux, uy } = dirUnit(dx, dy);
-        const inset = TILE * 0.35;
-        const ax = a.x + ux * inset, ay = a.y + uy * inset;
-        const bx = b.x - ux * inset, by = b.y - uy * inset;
-        const rev = reverseDir(e.dir);
-        const targetHasReverse = !!e.to.exits?.[rev] && e.to.exits[rev]?.to === e.from.vnum;
-
-        return (
-          <g key={`edge-${i}`}>
-            <line x1={ax} y1={ay} x2={bx} y2={by} stroke="rgba(255,255,255,0.9)" strokeWidth={2} />
-            <ArrowHead x={bx} y={by} ux={ux} uy={uy} />
-            {!e.oneWay && !targetHasReverse && (
-              <line
-                x1={bx}
-                y1={by}
-                x2={ax}
-                y2={ay}
-                stroke="rgba(255,255,255,0.7)"
-                strokeWidth={2}
-                strokeDasharray="4 4"
-              />
-            )}
-          </g>
-        );
-      })}
-
-      {/* LABELS LAST */}
-      {rooms.map((r) => {
-        const { x, y } = gridToPx(r.coords.cx, r.coords.cy, center, size.w, size.h);
-        return <TileLabel key={`label-${r.vnum}`} x={x} y={y} label={r.label || r.vnum} />;
-      })}
     </svg>
   );
 }

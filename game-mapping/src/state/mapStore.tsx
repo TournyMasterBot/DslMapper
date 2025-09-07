@@ -13,7 +13,8 @@ import {
   RoomPatch,
   Direction,
   ExitDef,
-  Category,
+  TerrainKind,
+  DIRECTIONS,
 } from "../types";
 import { saveToLocal, loadFromLocal } from "./persist";
 
@@ -47,16 +48,62 @@ export type Action =
       };
     };
 
-// ----------------- Reducer -----------------
+// ----------------- Helpers -----------------
 
 function bumpRevision(doc: MapDocV1) {
   doc.meta.revision = (doc.meta.revision ?? 0) + 1;
 }
 
+function withDefaultsRoom(r: Room): Room {
+  return {
+    vnum: r.vnum,
+    label: typeof r.label === "string" ? r.label : r.vnum,
+    coords: r.coords ?? { cx: 0, cy: 0, vz: 0 },
+    exits: r.exits ?? {},
+    sector: (r.sector as TerrainKind) ?? TerrainKind.Unknown,
+    movement: r.movement,
+    flags: r.flags,
+    objects: r.objects,
+    interactions: r.interactions,
+    category: r.category,
+  };
+}
+
+export function normalizeDoc(input: MapDocV1): MapDocV1 {
+  const meta = input.meta ?? ({} as MapDocV1["meta"]);
+  const directions =
+    Array.isArray(meta.directions) && meta.directions.length
+      ? meta.directions
+      : DIRECTIONS.slice();
+
+  const catalog = meta.catalog ?? {
+    worlds: {},
+    continents: {},
+    areas: {},
+  };
+
+  const rooms: Record<string, Room> = {};
+  for (const [vnum, r] of Object.entries(input.rooms ?? {})) {
+    rooms[vnum] = withDefaultsRoom(r as Room);
+  }
+
+  return {
+    meta: {
+      ...meta,
+      directions,
+      catalog,
+      revision: typeof meta.revision === "number" ? meta.revision : 0,
+    },
+    rooms,
+  };
+}
+
+// ----------------- Reducer -----------------
+
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "HYDRATE": {
-      return { ...state, doc: action.doc };
+      return { ...state, doc: normalizeDoc(action.doc) };
     }
     case "SELECT_ROOM":
       return { ...state, selected: action.vnum };
@@ -65,17 +112,20 @@ function reducer(state: State, action: Action): State {
       if (state.doc.rooms[action.vnum]) {
         return { ...state, selected: action.vnum };
       }
-      const newRoom: Room = {
+      const newRoom: Room = withDefaultsRoom({
         vnum: action.vnum,
+        label: action.vnum,
         coords: { cx: 0, cy: 0, vz: 0 },
         exits: {},
-      };
+        sector: TerrainKind.Unknown,
+      } as Room);
+
       const doc = {
         ...state.doc,
         rooms: { ...state.doc.rooms, [action.vnum]: newRoom },
       };
       bumpRevision(doc);
-      return { ...state, doc, selected: action.vnum };
+      return { ...state, doc: normalizeDoc(doc), selected: action.vnum };
     }
 
     case "DELETE_ROOM": {
@@ -84,7 +134,7 @@ function reducer(state: State, action: Action): State {
       bumpRevision(doc);
       return {
         ...state,
-        doc,
+        doc: normalizeDoc(doc),
         selected: state.selected === action.vnum ? null : state.selected,
       };
     }
@@ -92,17 +142,17 @@ function reducer(state: State, action: Action): State {
     case "PATCH_ROOM": {
       const room = state.doc.rooms[action.vnum];
       if (!room) return state;
-      const merged: Room = {
+      const merged: Room = withDefaultsRoom({
         ...room,
         ...action.patch,
         coords: { ...room.coords, ...(action.patch as any).coords },
-      };
+      });
       const doc = {
         ...state.doc,
         rooms: { ...state.doc.rooms, [action.vnum]: merged },
       };
 
-      // If we just assigned/changed area and that area has no primary yet, set this room as primary
+      // Auto-assign primary room for an area if missing
       const areaId = merged.category?.areaId;
       if (areaId) {
         const cat = doc.meta.catalog || {
@@ -118,7 +168,7 @@ function reducer(state: State, action: Action): State {
       }
 
       bumpRevision(doc);
-      return { ...state, doc };
+      return { ...state, doc: normalizeDoc(doc) };
     }
 
     case "UPSERT_EXIT": {
@@ -130,7 +180,7 @@ function reducer(state: State, action: Action): State {
         rooms: { ...state.doc.rooms, [action.vnum]: { ...r, exits } },
       };
       bumpRevision(doc);
-      return { ...state, doc };
+      return { ...state, doc: normalizeDoc(doc) };
     }
 
     case "DELETE_EXIT": {
@@ -143,7 +193,7 @@ function reducer(state: State, action: Action): State {
         rooms: { ...state.doc.rooms, [action.vnum]: { ...r, exits } },
       };
       bumpRevision(doc);
-      return { ...state, doc };
+      return { ...state, doc: normalizeDoc(doc) };
     }
 
     case "SET_LEVEL":
@@ -159,7 +209,7 @@ function reducer(state: State, action: Action): State {
       if (kind === "continent") doc.meta.catalog.continents[node.id] = node;
       if (kind === "area") doc.meta.catalog.areas[node.id] = node;
       bumpRevision(doc);
-      return { ...state, doc };
+      return { ...state, doc: normalizeDoc(doc) };
     }
 
     case "CATALOG_DELETE": {
@@ -178,7 +228,7 @@ function reducer(state: State, action: Action): State {
         doc.meta.catalog!.areas = rest;
       }
       bumpRevision(doc);
-      return { ...state, doc };
+      return { ...state, doc: normalizeDoc(doc) };
     }
 
     default:
@@ -201,32 +251,23 @@ export function useMap() {
 
 export function MapProvider({ children }: { children: React.ReactNode }) {
   const initial: State = {
-    doc: {
+    doc: normalizeDoc({
       meta: {
-        directions: [],
+        directions: DIRECTIONS.slice(),
         catalog: { worlds: {}, continents: {}, areas: {} },
+        revision: 0,
       },
       rooms: {},
-    },
+    }),
     selected: null,
     level: 0,
   };
 
-  // inside MapProvider -> hydrated useMemo(...)
   const hydrated = React.useMemo(() => {
     const loaded = loadFromLocal();
     if (loaded) {
-      const meta = loaded.meta ?? {};
       return {
-        doc: {
-          meta: {
-            directions: Array.isArray(meta.directions) ? meta.directions : [],
-            catalog: meta.catalog ?? { worlds: {}, continents: {}, areas: {} },
-            grid: meta.grid, // optional, preserve if present
-            revision: meta.revision, // optional, preserve if present
-          },
-          rooms: loaded.rooms ?? {},
-        },
+        doc: normalizeDoc(loaded),
         selected: null,
         level: 0,
       } as State;
@@ -236,13 +277,13 @@ export function MapProvider({ children }: { children: React.ReactNode }) {
 
   const [state, dispatch] = useReducer(reducer, hydrated);
 
-  // autosave
+  // autosave with normalization
   const saveTimer = useRef<number | null>(null);
   useEffect(() => {
     if (saveTimer.current) window.clearTimeout(saveTimer.current);
     saveTimer.current = window.setTimeout(() => {
       try {
-        saveToLocal(state.doc);
+        saveToLocal(normalizeDoc(state.doc));
       } catch {
         /* ignore */
       }

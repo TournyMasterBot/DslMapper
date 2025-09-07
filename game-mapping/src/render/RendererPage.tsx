@@ -1,76 +1,71 @@
 // src/pages/RendererPage.tsx
 import React from "react";
-import { loadFromLocal } from "../state/persist";
-import { TerrainKind, MapDocV1, Room } from "../types";
-import OctRenderer from "../render/OctRenderer"; // your octagon renderer
-import { useSearchParams, useParams } from "react-router-dom";
-
-const LS_KEY = "dslmapper:mapdoc:v1";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useMap } from "@state/mapStore";
+import OctRenderer from "../render/OctRenderer";
+import { buildRenderScope } from "../state/scope";
 
 export default function RendererPage() {
-  const { world = "all", continent = "all", area = "all" } = useParams();
+  const { state } = useMap();
+  const params = useParams<{
+    worldId?: string;
+    continentId?: string;
+    areaId?: string;
+  }>();
   const [search] = useSearchParams();
-  const level = Number(search.get("level") ?? "0");
-  const focusVnum = search.get("vnum") ?? null;
 
-  const [doc, setDoc] = React.useState<MapDocV1>(() => {
-    return (
-      loadFromLocal() ?? {
-        meta: {
-          directions: [],
-          catalog: { worlds: {}, continents: {}, areas: {} },
-        },
-        rooms: {},
-      }
-    );
-  });
+  // Scope from URL if present, else fallback to the same logic Toolbar uses
+  const fallback = buildRenderScope(state);
 
-  // Live re-hydrate when editor autosaves
+  const worldId = params.worldId ?? fallback.worldId;
+  const continentId = params.continentId ?? fallback.continentId;
+  const areaId = params.areaId ?? fallback.areaId;
+
+  const level = Number(search.get("level") ?? fallback.vz ?? 0);
+  const focusVnum = search.get("vnum") ?? undefined;
+  const centerCx = search.has("cx") ? Number(search.get("cx")) : undefined;
+  const centerCy = search.has("cy") ? Number(search.get("cy")) : undefined;
+
+  // Filter rooms by scope
+  const rooms = React.useMemo(() => {
+    return Object.values(state.doc.rooms).filter((r) => {
+      if (r.coords.vz !== level) return false;
+      if (areaId !== "all") return r.category?.areaId === areaId;
+      if (continentId !== "all") return r.category?.continentId === continentId;
+      if (worldId !== "all") return r.category?.worldId === worldId;
+      return true;
+    });
+  }, [state.doc.rooms, worldId, continentId, areaId, level]);
+
+  // Find primary for area scope (if any)
+  const primaryVnum =
+    areaId !== "all"
+      ? state.doc.meta.catalog?.areas?.[areaId]?.primaryVnum ?? undefined
+      : undefined;
+
+  // Optional: keep last render in localStorage (handy for other components)
   React.useEffect(() => {
-    const onStorage = (e: StorageEvent) => {
-      if (e.key !== LS_KEY || !e.newValue) return;
-      try {
-        const next = JSON.parse(e.newValue) as MapDocV1;
-        setDoc(next);
-      } catch {
-        /* ignore */
-      }
-    };
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, []);
-
-  // Filter rooms by scope + level
-  const rooms: Room[] = React.useMemo(() => {
-    const arr = Object.values(doc.rooms);
-    const matchesScope = (r: Room) => {
-      const wOk = world === "all" || r.category?.worldId === world;
-      const cOk = continent === "all" || r.category?.continentId === continent;
-      const aOk = area === "all" || r.category?.areaId === area;
-      return wOk && cOk && aOk;
-    };
-    return arr.filter((r) => matchesScope(r) && r.coords.vz === level);
-  }, [doc, world, continent, area, level]);
-
-  const primaryVnum = React.useMemo(() => {
-    if (area !== "all") {
-      const a = doc.meta.catalog?.areas?.[area];
-      return a?.primaryVnum || null;
-    }
-    // if viewing continent/world/all, no single primary (or you could pick each area's primary)
-    return null;
-  }, [doc, area]);
+    try {
+      localStorage.setItem(
+        "dslmapper:lastRender",
+        JSON.stringify({ worldId, continentId, areaId, level })
+      );
+    } catch {}
+  }, [worldId, continentId, areaId, level]);
 
   return (
-    <div className="renderer-page">
-      <OctRenderer
-        rooms={rooms}
-        level={level}
-        focusVnum={null} // stop using editor selection for highlight
-        primaryVnum={primaryVnum} // <-- NEW
-        centerCx={search.get("cx") ? Number(search.get("cx")) : undefined}
-        centerCy={search.get("cy") ? Number(search.get("cy")) : undefined}
-      />
+    <div style={{ height: "100vh", background: "#0f0f10" }}>
+      <svg width="0" height="0" style={{ position: "absolute" }} />
+      <div style={{ width: "100%", height: "100%" }}>
+        <OctRenderer
+          rooms={rooms}
+          level={level}
+          primaryVnum={primaryVnum}
+          centerCx={centerCx}
+          centerCy={centerCy}
+          focusVnum={focusVnum}
+        />
+      </div>
     </div>
   );
 }
