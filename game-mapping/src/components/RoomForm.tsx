@@ -1,65 +1,121 @@
-// src/components/RoomForm.tsx
-import { useMap } from '@state/mapStore'
-import ExitEditor from './ExitEditor'
+import React from "react";
+import { useMap } from "@state/mapStore";
+import { dirToGrid } from "../render/dir";
 
 export default function RoomForm({ vnum }: { vnum: string }) {
-  const { state, dispatch } = useMap()
-  const room = state.doc.rooms[vnum]
-  if (!room) return <div style={{ padding: 16 }}>No room selected.</div>
+  const { state, dispatch } = useMap();
+  const room = state.doc.rooms[vnum];
+  if (!room) return null;
 
-  const set = (key: keyof typeof room, value: any) =>
-    dispatch({ type: 'PATCH_ROOM', vnum, patch: { [key]: value } as any })
+  // Local string state so the user can type "-", "" etc. before committing a number
+  const [label, setLabel] = React.useState(room.label ?? "");
+  const [cx, setCx] = React.useState(String(room.coords.cx));
+  const [cy, setCy] = React.useState(String(room.coords.cy));
+  const [vz, setVz] = React.useState(String(room.coords.vz));
 
-  const setCoords = (k: 'q'|'r'|'level', value: number) => {
-    const c = room.coords ?? { q: 0, r: 0, level: 0 }
-    set('coords', { ...c, [k]: value })
-  }
+  React.useEffect(() => {
+    const r = state.doc.rooms[vnum];
+    if (!r) return;
+    setLabel(r.label ?? "");
+    setCx(String(r.coords.cx));
+    setCy(String(r.coords.cy));
+    setVz(String(r.coords.vz));
+  }, [vnum, state.doc.rooms]);
 
-  const setMovement = (k: 'requires'|'bans', value: string) => {
-    const mv = room.movement ?? { requires: [], bans: [] as string[] }
-    const arr = value.split(',').map(s => s.trim()).filter(Boolean)
-    set('movement', { ...mv, [k]: arr })
-  }
+  const patch = (patch: Partial<typeof room>) =>
+    dispatch({ type: "PATCH_ROOM", vnum, patch });
 
-  const setFlags = (json: string) => {
-    try { set('flags', json ? JSON.parse(json) : undefined) } catch {}
-  }
+  const commitNumber = (key: "cx" | "cy" | "vz", val: string) => {
+    // Only commit when it's a valid integer (including negatives)
+    if (!/^-?\d+$/.test(val)) return;
+    const n = parseInt(val, 10);
+    const next = { ...room.coords, [key]: n };
+    patch({ coords: next });
+  };
+
+  const move = (dir: string) => {
+    const [dx, dy, dz] = dirToGrid(dir as any);
+    const next = {
+      cx: room.coords.cx + dx,
+      cy: room.coords.cy + dy,
+      vz: room.coords.vz + dz,
+    };
+    patch({ coords: next });
+    setCx(String(next.cx));
+    setCy(String(next.cy));
+    setVz(String(next.vz));
+  };
 
   return (
-    <section style={{ padding: 12, display: 'grid', gap: 12 }}>
-      <h3>Room: {room.vnum}</h3>
+    <div style={{ padding: 12, border: "1px solid var(--line)", borderRadius: 6 }}>
+      <h3 style={{ marginTop: 0 }}>Edit Room</h3>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr 120px 1fr', gap: 8, alignItems: 'center' }}>
-        <label>Label</label>
-        <input value={room.label ?? ''} onChange={e => set('label', e.target.value)} />
-        <label>Sector</label>
-        <input value={room.sector ?? ''} onChange={e => set('sector', e.target.value)} />
+      <div style={{ display: "grid", gap: 10, maxWidth: 520 }}>
+        <div><strong>VNUM:</strong> {vnum}</div>
 
-        <label>q</label>
-        <input type="number" value={room.coords?.q ?? 0} onChange={e => setCoords('q', Number(e.target.value))} />
-        <label>r</label>
-        <input type="number" value={room.coords?.r ?? 0} onChange={e => setCoords('r', Number(e.target.value))} />
-        <label>level</label>
-        <input type="number" value={room.coords?.level ?? 0} onChange={e => setCoords('level', Number(e.target.value))} />
+        <label style={{ display: "grid", gap: 4 }}>
+          <span>Name</span>
+          <input
+            type="text"
+            value={label}
+            onChange={(e) => {
+              setLabel(e.target.value);
+              patch({ label: e.target.value || undefined });
+            }}
+          />
+        </label>
 
-        <label>Requires (comma)</label>
-        <input placeholder="swim, fly" value={(room.movement?.requires ?? []).join(', ')} onChange={e => setMovement('requires', e.target.value)} />
-        <label>Bans (comma)</label>
-        <input placeholder="flight" value={(room.movement?.bans ?? []).join(', ')} onChange={e => setMovement('bans', e.target.value)} />
+        <label style={{ display: "grid", gap: 4 }}>
+          <span>Coordinates (cx, cy, vz)</span>
+          <div style={{ display: "flex", gap: 8 }}>
+            <input
+              type="number"
+              inputMode="numeric"
+              value={cx}
+              onChange={(e) => setCx(e.target.value)}
+              onBlur={() => commitNumber("cx", cx)}
+              style={{ width: 80 }}
+            />
+            <input
+              type="number"
+              inputMode="numeric"
+              value={cy}
+              onChange={(e) => setCy(e.target.value)}
+              onBlur={() => commitNumber("cy", cy)}
+              style={{ width: 80 }}
+            />
+            <input
+              type="number"
+              inputMode="numeric"
+              value={vz}
+              onChange={(e) => setVz(e.target.value)}
+              onBlur={() => commitNumber("vz", vz)}
+              style={{ width: 80 }}
+            />
+          </div>
+        </label>
 
-        <label>Flags (JSON)</label>
-        <textarea rows={3} placeholder='{"rubbleCleared":false}' value={room.flags ? JSON.stringify(room.flags) : ''} onChange={e => setFlags(e.target.value)} />
+        {/* Movement controls (star pattern) */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, width: 240 }}>
+          <button type="button" onClick={() => move("NW")}>NW</button>
+          <button type="button" onClick={() => move("N")}>N</button>
+          <button type="button" onClick={() => move("NE")}>NE</button>
+
+          <button type="button" onClick={() => move("W")}>W</button>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7 }}>&middot;</div>
+          <button type="button" onClick={() => move("E")}>E</button>
+
+          <button type="button" onClick={() => move("SW")}>SW</button>
+          <button type="button" onClick={() => move("S")}>S</button>
+          <button type="button" onClick={() => move("SE")}>SE</button>
+        </div>
+
+        {/* Vertical movement (U/D) */}
+        <div style={{ display: "flex", gap: 6 }}>
+          <button type="button" onClick={() => move("U")}>U</button>
+          <button type="button" onClick={() => move("D")}>D</button>
+        </div>
       </div>
-
-      <div>
-        <h4>Exits</h4>
-        <ExitEditor vnum={room.vnum} />
-      </div>
-
-      <div>
-        <h4>Interactions (placeholder)</h4>
-        <p style={{ opacity: .8 }}>We’ll add a structured editor later.</p>
-      </div>
-    </section>
-  )
+    </div>
+  );
 }

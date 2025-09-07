@@ -1,24 +1,33 @@
-import RoomForm from './RoomForm'
-import RoomList from './RoomList'
-import Toolbar from './Toolbar'
+import React from 'react'
 import { useMap } from '@state/mapStore'
-
+import RoomList from './RoomList'
+import RoomForm from './RoomForm'
+import Toolbar from './Toolbar'
+import PersistenceBar from './PersistenceBar'
+import '../styles/layout.scss'
 
 export default function MapEditor() {
-const { state } = useMap()
-return (
-<div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', height: '100vh' }}>
-<RoomList />
-<div style={{ display: 'flex', flexDirection: 'column' }}>
-<Toolbar />
-<div style={{ flex: 1, overflow: 'auto' }}>
-{state.selectedVnum ? (
-<RoomForm vnum={state.selectedVnum} />
-) : (
-<div style={{ padding: 16, opacity: .8 }}>Select or add a room to begin.</div>
-)}
-</div>
-</div>
-</div>
-)
+  const { state } = useMap()
+  const selectedVnum = state.selected
+
+  return (
+    <div className="layout">
+      <aside className="sidebar">
+        <RoomList />
+      </aside>
+      <main className="main">
+        <Toolbar />
+        <PersistenceBar />
+        <div className="content">
+          {selectedVnum ? (
+            <RoomForm vnum={selectedVnum} />
+          ) : (
+            <div style={{ opacity: 0.6, padding: 12 }}>
+              Select a room on the left to edit.
+            </div>
+          )}
+        </div>
+      </main>
+    </div>
+  )
 }
