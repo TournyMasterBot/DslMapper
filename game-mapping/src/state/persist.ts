@@ -1,36 +1,35 @@
 // src/state/persist.ts
 import { MapDocV1 } from '../types'
 
-const LS_KEY = 'dslmapper:mapdoc:v1'
+/** Single key we autosave to; other tabs listen for changes. */
+export const STORAGE_KEY = 'dslmapper.autosave'
 
-export type PersistInfo = {
-  savedAt: number
-  size: number
-}
-
-export function saveToLocal(doc: MapDocV1): PersistInfo {
-  const json = JSON.stringify(doc)
-  localStorage.setItem(LS_KEY, json)
-  return { savedAt: Date.now(), size: json.length }
+export function saveToLocal(doc: MapDocV1) {
+  const payload = JSON.stringify(doc)
+  localStorage.setItem(STORAGE_KEY, payload) // fires 'storage' in other tabs
+  const savedAt = Date.now()
+  return { savedAt }
 }
 
 export function loadFromLocal(): MapDocV1 | null {
-  const raw = localStorage.getItem(LS_KEY)
+  const raw = localStorage.getItem(STORAGE_KEY)
   if (!raw) return null
   try {
-    const parsed = JSON.parse(raw) as MapDocV1
-    return parsed
+    return JSON.parse(raw) as MapDocV1
   } catch {
     return null
   }
 }
 
 export function clearLocal() {
-  localStorage.removeItem(LS_KEY)
+  localStorage.removeItem(STORAGE_KEY)
 }
 
-export function exportToFile(doc: MapDocV1, filename = 'mapdoc.json') {
-  const blob = new Blob([JSON.stringify(doc, null, 2)], { type: 'application/json' })
+/** Utility for file export (JSON) */
+export function exportToFile(data: unknown, filename: string) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: 'application/json;charset=utf-8',
+  })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -41,8 +40,9 @@ export function exportToFile(doc: MapDocV1, filename = 'mapdoc.json') {
   URL.revokeObjectURL(url)
 }
 
+/** Utility for file import (JSON) */
 export async function importFromFile(file: File): Promise<MapDocV1> {
   const text = await file.text()
-  const parsed = JSON.parse(text) as MapDocV1
-  return parsed
+  const parsed = JSON.parse(text)
+  return parsed as MapDocV1
 }
