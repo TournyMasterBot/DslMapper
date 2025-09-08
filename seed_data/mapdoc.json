@@ -2872,7 +2872,662 @@
         }
       }
     },
-    "revision": 1
+    "revision": 825
   },
-  "rooms": {}
+  "rooms": {
+    "hjga-mfa5x9pa": {
+      "vnum": "hjga-mfa5x9pa",
+      "coords": {
+        "cx": 0,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "iqrz-mfa5xljx",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "1: Chamber of Rest",
+      "sector": "indoors",
+      "movement": {}
+    },
+    "iqrz-mfa5xljx": {
+      "vnum": "iqrz-mfa5xljx",
+      "coords": {
+        "cx": 0,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "2my5-mfa60swp",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "dii0-mfa64mng",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "hjga-mfa5x9pa",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "D": {
+          "to": "m567-mfa9c2qj",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "y7xs-mfa9dbby",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "A Darkened Hallway (1)",
+      "sector": "fields"
+    },
+    "2my5-mfa60swp": {
+      "vnum": "2my5-mfa60swp",
+      "coords": {
+        "cx": 0,
+        "cy": 4,
+        "vz": 0
+      },
+      "exits": {},
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Chamber of the High Council",
+      "sector": "indoors"
+    },
+    "dii0-mfa64mng": {
+      "vnum": "dii0-mfa64mng",
+      "coords": {
+        "cx": 3,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "6xzj-mfa65w8i",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "iqrz-mfa5xljx",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "l8i5-mfa8sxwa",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "3f1p-mfa7sh1y",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "A Darkened Hallway (2)",
+      "sector": "indoors"
+    },
+    "6xzj-mfa65w8i": {
+      "vnum": "6xzj-mfa65w8i",
+      "coords": {
+        "cx": 3,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "dii0-mfa64mng",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "5ll5-mfa6snol",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "A Darkened Hallway (3)",
+      "sector": "indoors"
+    },
+    "5ll5-mfa6snol": {
+      "vnum": "5ll5-mfa6snol",
+      "coords": {
+        "cx": 3,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "1921-mfa6u04s",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "6xzj-mfa65w8i",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Hall of Statuary",
+      "sector": "indoors"
+    },
+    "1921-mfa6u04s": {
+      "vnum": "1921-mfa6u04s",
+      "coords": {
+        "cx": 3,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "5ll5-mfa6snol",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Sanctum of the Shadowknights",
+      "sector": "indoors"
+    },
+    "g73l-mfa7rtkj": {
+      "vnum": "g73l-mfa7rtkj",
+      "coords": {
+        "cx": 0,
+        "cy": 7,
+        "vz": 0
+      },
+      "exits": {
+        "NE": {
+          "to": "3f1p-mfa7sh1y",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Chamber of Mysticism",
+      "sector": "indoors"
+    },
+    "3f1p-mfa7sh1y": {
+      "vnum": "3f1p-mfa7sh1y",
+      "coords": {
+        "cx": 3,
+        "cy": 4,
+        "vz": 0
+      },
+      "exits": {
+        "SW": {
+          "to": "g73l-mfa7rtkj",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        },
+        "N": {
+          "to": "dii0-mfa64mng",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "SE": {
+          "to": "nh74-mfa7x2ul",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        },
+        "S": {
+          "to": "s8fc-mfa7z8d3",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Library of Storm Keep",
+      "sector": "indoors"
+    },
+    "nh74-mfa7x2ul": {
+      "vnum": "nh74-mfa7x2ul",
+      "coords": {
+        "cx": 6,
+        "cy": 7,
+        "vz": 0
+      },
+      "exits": {
+        "NE": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "NW": {
+          "to": "3f1p-mfa7sh1y",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Chamber of Theology",
+      "sector": "indoors"
+    },
+    "s8fc-mfa7z8d3": {
+      "vnum": "s8fc-mfa7z8d3",
+      "coords": {
+        "cx": 3,
+        "cy": 7,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "3f1p-mfa7sh1y",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Chamber of the Umbra",
+      "sector": "indoors"
+    },
+    "b75w-mfa84iti": {
+      "vnum": "b75w-mfa84iti",
+      "coords": {
+        "cx": 0,
+        "cy": 0,
+        "vz": -1
+      },
+      "exits": {},
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Chamber of the Penitent",
+      "sector": "indoors"
+    },
+    "l8i5-mfa8sxwa": {
+      "vnum": "l8i5-mfa8sxwa",
+      "coords": {
+        "cx": 6,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "dii0-mfa64mng",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "6znd-mfa8uyk5",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "eakj-mfa8xrhr",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "A Darkened Hallway (4)",
+      "sector": "indoors"
+    },
+    "6znd-mfa8uyk5": {
+      "vnum": "6znd-mfa8uyk5",
+      "coords": {
+        "cx": 9,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "l8i5-mfa8sxwa",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Hall of Ceremony",
+      "sector": "indoors"
+    },
+    "eakj-mfa8xrhr": {
+      "vnum": "eakj-mfa8xrhr",
+      "coords": {
+        "cx": 6,
+        "cy": 4,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "l8i5-mfa8sxwa",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "dkeh-mfa8yq7z",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "U": {
+          "to": "3rg8-mfa99n60",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Altar of Necrucifer",
+      "sector": "indoors"
+    },
+    "dkeh-mfa8yq7z": {
+      "vnum": "dkeh-mfa8yq7z",
+      "coords": {
+        "cx": 9,
+        "cy": 4,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "eakj-mfa8xrhr",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "D": {
+          "to": "la3r-mfa907rj",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Vaults of Antiquity",
+      "sector": "indoors"
+    },
+    "la3r-mfa907rj": {
+      "vnum": "la3r-mfa907rj",
+      "coords": {
+        "cx": 9,
+        "cy": 4,
+        "vz": -1
+      },
+      "exits": {
+        "U": {
+          "to": "dkeh-mfa8yq7z",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Arid Catacombs",
+      "sector": "indoors"
+    },
+    "3rg8-mfa99n60": {
+      "vnum": "3rg8-mfa99n60",
+      "coords": {
+        "cx": 6,
+        "cy": 4,
+        "vz": 1
+      },
+      "exits": {
+        "D": {
+          "to": "eakj-mfa8xrhr",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Spire of Drakkara",
+      "sector": "indoors"
+    },
+    "m567-mfa9c2qj": {
+      "vnum": "m567-mfa9c2qj",
+      "coords": {
+        "cx": 0,
+        "cy": 2,
+        "vz": -1
+      },
+      "exits": {
+        "U": {
+          "to": "iqrz-mfa5xljx",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "At the Base of a Black, Marble Staircase",
+      "sector": "indoors"
+    },
+    "y7xs-mfa9dbby": {
+      "vnum": "y7xs-mfa9dbby",
+      "coords": {
+        "cx": -3,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "iqrz-mfa5xljx",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "jdqn-mfa9f31b",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "g9tz-mfa9ghyo",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Entryway of the Keep",
+      "sector": "indoors"
+    },
+    "jdqn-mfa9f31b": {
+      "vnum": "jdqn-mfa9f31b",
+      "coords": {
+        "cx": -3,
+        "cy": 4,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "y7xs-mfa9dbby",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "Wares and Supplies",
+      "sector": "indoors"
+    },
+    "g9tz-mfa9ghyo": {
+      "vnum": "g9tz-mfa9ghyo",
+      "coords": {
+        "cx": -6,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "y7xs-mfa9dbby",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "SE": {
+          "to": "wgb8-mfa9i6hg",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Courtyard",
+      "sector": "city"
+    },
+    "wgb8-mfa9i6hg": {
+      "vnum": "wgb8-mfa9i6hg",
+      "coords": {
+        "cx": -8,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "NW": {
+          "to": "g9tz-mfa9ghyo",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      },
+      "label": "The Gatehouse of Storm Keep",
+      "sector": "desert"
+    }
+  }
 }
