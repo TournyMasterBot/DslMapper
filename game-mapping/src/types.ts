@@ -177,6 +177,8 @@ export const enum TerrainKind {
   Forest   = "forest",
   Fields   = "fields",
   Tundra   = "tundra",
+  Ocean    = "ocean",
+  Swim     = "swim"
 }
 export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Unknown,
@@ -188,4 +190,6 @@ export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Forest,
   TerrainKind.Fields,
   TerrainKind.Tundra,
+  TerrainKind.Ocean,
+  TerrainKind.Swim
 ];

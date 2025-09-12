@@ -722,12 +722,6 @@
           "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
           "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0"
         },
-        "780db392-14f5-5633-969c-3d17f4552d51": {
-          "id": "780db392-14f5-5633-969c-3d17f4552d51",
-          "name": "Sunken Temple of Ara",
-          "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
-          "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0"
-        },
         "581adbc6-bd56-51a4-960c-d1418c03acf5": {
           "id": "581adbc6-bd56-51a4-960c-d1418c03acf5",
           "name": "Swampy Bog",
@@ -2869,14 +2863,22 @@
           "name": "West Dock",
           "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
           "continentId": "fe310318-8c98-5205-99e2-165f8e3b1a5b"
+        },
+        "02163a55-00e8-4ab2-bda4-c47100a6574a": {
+          "id": "02163a55-00e8-4ab2-bda4-c47100a6574a",
+          "name": "The Sunken Temple of Ara",
+          "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+          "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719"
         }
       }
     },
-    "revision": 825
+    "revision": 3321
   },
   "rooms": {
     "hjga-mfa5x9pa": {
       "vnum": "hjga-mfa5x9pa",
+      "label": "1: Chamber of Rest",
+      "sector": "indoors",
       "coords": {
         "cx": 0,
         "cy": 0,
@@ -2890,17 +2892,17 @@
           "status": "unknown"
         }
       },
+      "movement": {},
       "category": {
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "1: Chamber of Rest",
-      "sector": "indoors",
-      "movement": {}
+      }
     },
     "iqrz-mfa5xljx": {
       "vnum": "iqrz-mfa5xljx",
+      "label": "A Darkened Hallway (1)",
+      "sector": "fields",
       "coords": {
         "cx": 0,
         "cy": 2,
@@ -2938,16 +2940,17 @@
           "status": "created"
         }
       },
+      "movement": {},
       "category": {
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "A Darkened Hallway (1)",
-      "sector": "fields"
+      }
     },
     "2my5-mfa60swp": {
       "vnum": "2my5-mfa60swp",
+      "label": "Chamber of the High Council",
+      "sector": "indoors",
       "coords": {
         "cx": 0,
         "cy": 4,
@@ -2958,12 +2961,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Chamber of the High Council",
-      "sector": "indoors"
+      }
     },
     "dii0-mfa64mng": {
       "vnum": "dii0-mfa64mng",
+      "label": "A Darkened Hallway (2)",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": 2,
@@ -2999,12 +3002,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "A Darkened Hallway (2)",
-      "sector": "indoors"
+      }
     },
     "6xzj-mfa65w8i": {
       "vnum": "6xzj-mfa65w8i",
+      "label": "A Darkened Hallway (3)",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": 0,
@@ -3034,12 +3037,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "A Darkened Hallway (3)",
-      "sector": "indoors"
+      }
     },
     "5ll5-mfa6snol": {
       "vnum": "5ll5-mfa6snol",
+      "label": "The Hall of Statuary",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": -2,
@@ -3063,12 +3066,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Hall of Statuary",
-      "sector": "indoors"
+      }
     },
     "1921-mfa6u04s": {
       "vnum": "1921-mfa6u04s",
+      "label": "The Sanctum of the Shadowknights",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": -4,
@@ -3086,12 +3089,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Sanctum of the Shadowknights",
-      "sector": "indoors"
+      }
     },
     "g73l-mfa7rtkj": {
       "vnum": "g73l-mfa7rtkj",
+      "label": "The Chamber of Mysticism",
+      "sector": "indoors",
       "coords": {
         "cx": 0,
         "cy": 7,
@@ -3109,12 +3112,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Chamber of Mysticism",
-      "sector": "indoors"
+      }
     },
     "3f1p-mfa7sh1y": {
       "vnum": "3f1p-mfa7sh1y",
+      "label": "The Library of Storm Keep",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": 4,
@@ -3154,12 +3157,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Library of Storm Keep",
-      "sector": "indoors"
+      }
     },
     "nh74-mfa7x2ul": {
       "vnum": "nh74-mfa7x2ul",
+      "label": "The Chamber of Theology",
+      "sector": "indoors",
       "coords": {
         "cx": 6,
         "cy": 7,
@@ -3185,12 +3188,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Chamber of Theology",
-      "sector": "indoors"
+      }
     },
     "s8fc-mfa7z8d3": {
       "vnum": "s8fc-mfa7z8d3",
+      "label": "Chamber of the Umbra",
+      "sector": "indoors",
       "coords": {
         "cx": 3,
         "cy": 7,
@@ -3208,12 +3211,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Chamber of the Umbra",
-      "sector": "indoors"
+      }
     },
     "b75w-mfa84iti": {
       "vnum": "b75w-mfa84iti",
+      "label": "Chamber of the Penitent",
+      "sector": "indoors",
       "coords": {
         "cx": 0,
         "cy": 0,
@@ -3224,12 +3227,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Chamber of the Penitent",
-      "sector": "indoors"
+      }
     },
     "l8i5-mfa8sxwa": {
       "vnum": "l8i5-mfa8sxwa",
+      "label": "A Darkened Hallway (4)",
+      "sector": "indoors",
       "coords": {
         "cx": 6,
         "cy": 2,
@@ -3259,12 +3262,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "A Darkened Hallway (4)",
-      "sector": "indoors"
+      }
     },
     "6znd-mfa8uyk5": {
       "vnum": "6znd-mfa8uyk5",
+      "label": "Hall of Ceremony",
+      "sector": "indoors",
       "coords": {
         "cx": 9,
         "cy": 2,
@@ -3282,12 +3285,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Hall of Ceremony",
-      "sector": "indoors"
+      }
     },
     "eakj-mfa8xrhr": {
       "vnum": "eakj-mfa8xrhr",
+      "label": "Altar of Necrucifer",
+      "sector": "indoors",
       "coords": {
         "cx": 6,
         "cy": 4,
@@ -3317,12 +3320,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Altar of Necrucifer",
-      "sector": "indoors"
+      }
     },
     "dkeh-mfa8yq7z": {
       "vnum": "dkeh-mfa8yq7z",
+      "label": "Vaults of Antiquity",
+      "sector": "indoors",
       "coords": {
         "cx": 9,
         "cy": 4,
@@ -3346,12 +3349,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Vaults of Antiquity",
-      "sector": "indoors"
+      }
     },
     "la3r-mfa907rj": {
       "vnum": "la3r-mfa907rj",
+      "label": "Arid Catacombs",
+      "sector": "indoors",
       "coords": {
         "cx": 9,
         "cy": 4,
@@ -3369,12 +3372,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Arid Catacombs",
-      "sector": "indoors"
+      }
     },
     "3rg8-mfa99n60": {
       "vnum": "3rg8-mfa99n60",
+      "label": "Spire of Drakkara",
+      "sector": "indoors",
       "coords": {
         "cx": 6,
         "cy": 4,
@@ -3392,12 +3395,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Spire of Drakkara",
-      "sector": "indoors"
+      }
     },
     "m567-mfa9c2qj": {
       "vnum": "m567-mfa9c2qj",
+      "label": "At the Base of a Black, Marble Staircase",
+      "sector": "indoors",
       "coords": {
         "cx": 0,
         "cy": 2,
@@ -3415,12 +3418,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "At the Base of a Black, Marble Staircase",
-      "sector": "indoors"
+      }
     },
     "y7xs-mfa9dbby": {
       "vnum": "y7xs-mfa9dbby",
+      "label": "Entryway of the Keep",
+      "sector": "indoors",
       "coords": {
         "cx": -3,
         "cy": 2,
@@ -3450,12 +3453,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Entryway of the Keep",
-      "sector": "indoors"
+      }
     },
     "jdqn-mfa9f31b": {
       "vnum": "jdqn-mfa9f31b",
+      "label": "Wares and Supplies",
+      "sector": "indoors",
       "coords": {
         "cx": -3,
         "cy": 4,
@@ -3473,12 +3476,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "Wares and Supplies",
-      "sector": "indoors"
+      }
     },
     "g9tz-mfa9ghyo": {
       "vnum": "g9tz-mfa9ghyo",
+      "label": "The Courtyard",
+      "sector": "city",
       "coords": {
         "cx": -6,
         "cy": 2,
@@ -3502,12 +3505,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
-      },
-      "label": "The Courtyard",
-      "sector": "city"
+      }
     },
     "wgb8-mfa9i6hg": {
       "vnum": "wgb8-mfa9i6hg",
+      "label": "The Gatehouse of Storm Keep",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": 0,
@@ -3525,8 +3528,1915 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "1f6fcdbb-f602-572f-a5d9-4fe83e62ce55"
+      }
+    },
+    "2j8w-mfdxzfrs": {
+      "vnum": "2j8w-mfdxzfrs",
+      "label": "1: A Desert Dune",
+      "sector": "desert",
+      "coords": {
+        "cx": 0,
+        "cy": 0,
+        "vz": 0
       },
-      "label": "The Gatehouse of Storm Keep",
+      "exits": {
+        "SW": {
+          "to": "uw0h-mfdy04yl",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "2j8w-mfdxzfrs",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "2j8w-mfdxzfrs",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "n97f-mfdy6h65",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "uw0h-mfdy04yl": {
+      "vnum": "uw0h-mfdy04yl",
+      "label": "Sand Sea of Kabir Abyad",
+      "sector": "desert",
+      "coords": {
+        "cx": -2,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "NE": {
+          "to": "2j8w-mfdxzfrs",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "n97f-mfdy6h65": {
+      "vnum": "n97f-mfdy6h65",
+      "label": "More Dunes (1)",
+      "sector": "desert",
+      "coords": {
+        "cx": 0,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "2j8w-mfdxzfrs",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "d4j5-mfdy8ret",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "d4j5-mfdy8ret": {
+      "vnum": "d4j5-mfdy8ret",
+      "label": "More Dunes (2)",
+      "sector": "desert",
+      "coords": {
+        "cx": 4,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "n97f-mfdy6h65",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "7sn6-mfdy9k5m",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "7sn6-mfdy9k5m": {
+      "vnum": "7sn6-mfdy9k5m",
+      "label": "A Wall of Rock",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "d4j5-mfdy8ret",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "dryn-mfdyahuq",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "dryn-mfdyahuq": {
+      "vnum": "dryn-mfdyahuq",
+      "label": "More Sand, More Dunes",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "7sn6-mfdy9k5m",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "opqd-mfdybg67",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "q081-mfdyd79v",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "opqd-mfdybg67": {
+      "vnum": "opqd-mfdybg67",
+      "label": "End of the Dunes",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "dryn-mfdyahuq",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "q081-mfdyd79v": {
+      "vnum": "q081-mfdyd79v",
+      "label": "Along the Rock Wall",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "dryn-mfdyahuq",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "7hun-mfdyh7of",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "7hun-mfdyh7of": {
+      "vnum": "7hun-mfdyh7of",
+      "label": "Following the Rock Wall",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "q081-mfdyd79v",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "fh93-mfdyi3fl",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "fh93-mfdyi3fl": {
+      "vnum": "fh93-mfdyi3fl",
+      "label": "Sandy Ground Near the Oasis",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "7hun-mfdyh7of",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "vcq9-mfdyj24j",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "vcq9-mfdyj24j": {
+      "vnum": "vcq9-mfdyj24j",
+      "label": "A Random Sand Dune (1)",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "fh93-mfdyi3fl",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "2hc8-mfdzje57",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "A Random Sand Dune (2)": {
+      "vnum": "A Random Sand Dune (2)",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "vcq9-mfdyj24j",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "Ascending a Hill of Sand": {
+      "vnum": "Ascending a Hill of Sand",
+      "coords": {
+        "cx": 12,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {},
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "780db392-14f5-5633-969c-3d17f4552d51"
+      }
+    },
+    "8656e4dd-a53b-450d-9a88-4918cf11318c": {
+      "vnum": "8656e4dd-a53b-450d-9a88-4918cf11318c",
+      "label": "1: A Desert Dune",
+      "sector": "desert",
+      "coords": {
+        "cx": 0,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "8656e4dd-a53b-450d-9a88-4918cf11318c",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "8656e4dd-a53b-450d-9a88-4918cf11318c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "SW": {
+          "to": "f183ac30-33af-4f9c-aab1-63e72d19aecc",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "f183ac30-33af-4f9c-aab1-63e72d19aecc": {
+      "vnum": "f183ac30-33af-4f9c-aab1-63e72d19aecc",
+      "label": "Sand Sea of Kabir Abyad",
+      "sector": "desert",
+      "coords": {
+        "cx": -2,
+        "cy": 2,
+        "vz": 0
+      },
+      "exits": {
+        "NE": {
+          "to": "8656e4dd-a53b-450d-9a88-4918cf11318c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec": {
+      "vnum": "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec",
+      "label": "More Dunes (1)",
+      "sector": "desert",
+      "coords": {
+        "cx": 0,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "8656e4dd-a53b-450d-9a88-4918cf11318c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "bdf8b648-83c2-4db1-b62e-836aba98cd52",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "48b820dd-22b7-434d-9dab-e6544bbed29c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "bdf8b648-83c2-4db1-b62e-836aba98cd52": {
+      "vnum": "bdf8b648-83c2-4db1-b62e-836aba98cd52",
+      "label": "More Dunes (2)",
+      "sector": "desert",
+      "coords": {
+        "cx": 4,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "9f9680b7-d341-47bf-997d-ec31839f8104",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "9f9680b7-d341-47bf-997d-ec31839f8104": {
+      "vnum": "9f9680b7-d341-47bf-997d-ec31839f8104",
+      "label": "A Wall of Rock",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "bdf8b648-83c2-4db1-b62e-836aba98cd52",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "59de313b-0391-4628-998b-bd2d22165ad8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "59de313b-0391-4628-998b-bd2d22165ad8": {
+      "vnum": "59de313b-0391-4628-998b-bd2d22165ad8",
+      "label": "More Sand, More Dunes",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "9f9680b7-d341-47bf-997d-ec31839f8104",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "15520a9b-4222-4358-a2b7-e798588d5655",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "fa749285-876d-44a8-b96c-d264a85cda44",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "15520a9b-4222-4358-a2b7-e798588d5655": {
+      "vnum": "15520a9b-4222-4358-a2b7-e798588d5655",
+      "label": "Along the Rock Wall",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "59de313b-0391-4628-998b-bd2d22165ad8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "12e54433-2146-4e27-82c8-76737a736e01",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "12e54433-2146-4e27-82c8-76737a736e01": {
+      "vnum": "12e54433-2146-4e27-82c8-76737a736e01",
+      "label": "Following the Rock Wall",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "15520a9b-4222-4358-a2b7-e798588d5655",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "41262f62-fdc2-43ab-88f7-d00b27c659ca",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "fa749285-876d-44a8-b96c-d264a85cda44",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "41262f62-fdc2-43ab-88f7-d00b27c659ca": {
+      "vnum": "41262f62-fdc2-43ab-88f7-d00b27c659ca",
+      "label": "Sandy Ground Near the Oasis",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "12e54433-2146-4e27-82c8-76737a736e01",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "50620e8e-8908-4c51-a687-46b12829d907",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "50620e8e-8908-4c51-a687-46b12829d907": {
+      "vnum": "50620e8e-8908-4c51-a687-46b12829d907",
+      "label": "A Random Sand Dune (1)",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "41262f62-fdc2-43ab-88f7-d00b27c659ca",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "33fbd05f-bb48-4e13-92a1-9748a82df00e",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "33fbd05f-bb48-4e13-92a1-9748a82df00e": {
+      "vnum": "33fbd05f-bb48-4e13-92a1-9748a82df00e",
+      "label": "A Random Sand Dune (2)",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "50620e8e-8908-4c51-a687-46b12829d907",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "856124b1-3909-469e-afa2-474b326ae443",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "6751aaf4-a38a-4127-a337-402d9de04770",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "856124b1-3909-469e-afa2-474b326ae443": {
+      "vnum": "856124b1-3909-469e-afa2-474b326ae443",
+      "label": "Ascending a Hill of Sand (1)",
+      "sector": "desert",
+      "coords": {
+        "cx": 12,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "33fbd05f-bb48-4e13-92a1-9748a82df00e",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "5f96227a-ee8e-4bbd-85c8-7e4a5b1cd4a3",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "5f96227a-ee8e-4bbd-85c8-7e4a5b1cd4a3": {
+      "vnum": "5f96227a-ee8e-4bbd-85c8-7e4a5b1cd4a3",
+      "label": "Ascending a Hill of Sand (2)",
+      "sector": "desert",
+      "coords": {
+        "cx": 8,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "856124b1-3909-469e-afa2-474b326ae443",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "56648744-fe47-4292-9e60-a378157ae890",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "6751aaf4-a38a-4127-a337-402d9de04770",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "56648744-fe47-4292-9e60-a378157ae890": {
+      "vnum": "56648744-fe47-4292-9e60-a378157ae890",
+      "label": "Ascending a Hill of Sand (3)",
+      "sector": "desert",
+      "coords": {
+        "cx": 4,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "5f96227a-ee8e-4bbd-85c8-7e4a5b1cd4a3",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "0fa77bff-0b4a-4770-abb8-4dd6282d8155",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "0fa77bff-0b4a-4770-abb8-4dd6282d8155": {
+      "vnum": "0fa77bff-0b4a-4770-abb8-4dd6282d8155",
+      "label": "Ascending a Hill of Sand (4)",
+      "sector": "desert",
+      "coords": {
+        "cx": 0,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "56648744-fe47-4292-9e60-a378157ae890",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "84d5fbdc-544f-4aa6-9dc6-25d9334c5114",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "84d5fbdc-544f-4aa6-9dc6-25d9334c5114": {
+      "vnum": "84d5fbdc-544f-4aa6-9dc6-25d9334c5114",
+      "label": "Ascending a Hill of Sand (5)",
+      "sector": "desert",
+      "coords": {
+        "cx": -4,
+        "cy": -14,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "0fa77bff-0b4a-4770-abb8-4dd6282d8155",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "853195fb-f087-4281-8385-3dfee9f551d6",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "853195fb-f087-4281-8385-3dfee9f551d6": {
+      "vnum": "853195fb-f087-4281-8385-3dfee9f551d6",
+      "label": "Inside the Oasis (1)",
+      "sector": "swim",
+      "coords": {
+        "cx": -4,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "84d5fbdc-544f-4aa6-9dc6-25d9334c5114",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "8982ac17-1aa0-42f0-b33f-4f4ce1256b64",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "8982ac17-1aa0-42f0-b33f-4f4ce1256b64": {
+      "vnum": "8982ac17-1aa0-42f0-b33f-4f4ce1256b64",
+      "coords": {
+        "cx": -4,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "853195fb-f087-4281-8385-3dfee9f551d6",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (2)",
+      "sector": "swim"
+    },
+    "fc370558-79e0-4a1a-b0cd-5a16b1d2830f": {
+      "vnum": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+      "coords": {
+        "cx": -4,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "8982ac17-1aa0-42f0-b33f-4f4ce1256b64",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "3e413484-0883-4364-9736-b9d9104423ae",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (3)",
+      "sector": "swim"
+    },
+    "3e413484-0883-4364-9736-b9d9104423ae": {
+      "vnum": "3e413484-0883-4364-9736-b9d9104423ae",
+      "coords": {
+        "cx": -8,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "f63d2c4f-9f4d-440d-a4da-868495c9e9f5",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Mouth of the Stone Arch",
+      "sector": "desert"
+    },
+    "f63d2c4f-9f4d-440d-a4da-868495c9e9f5": {
+      "vnum": "f63d2c4f-9f4d-440d-a4da-868495c9e9f5",
+      "coords": {
+        "cx": -8,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "3e413484-0883-4364-9736-b9d9104423ae",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "3283b914-6939-4c10-a5d4-96957663086b",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Between the Stone Arch",
+      "sector": "desert"
+    },
+    "3283b914-6939-4c10-a5d4-96957663086b": {
+      "vnum": "3283b914-6939-4c10-a5d4-96957663086b",
+      "coords": {
+        "cx": -8,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "f63d2c4f-9f4d-440d-a4da-868495c9e9f5",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Deep in the Rock Tunnel",
+      "sector": "desert"
+    },
+    "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb": {
+      "vnum": "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb",
+      "coords": {
+        "cx": -8,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "3e413484-0883-4364-9736-b9d9104423ae",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "a28e2bc1-da54-4c2f-becb-f92ece01cef5",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Along the Stone Wall (1)",
+      "sector": "desert"
+    },
+    "a28e2bc1-da54-4c2f-becb-f92ece01cef5": {
+      "vnum": "a28e2bc1-da54-4c2f-becb-f92ece01cef5",
+      "coords": {
+        "cx": -8,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "a627a18f-e9aa-4def-a44c-f31a75fe5b96",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Along the Stone Wall (2)",
+      "sector": "desert"
+    },
+    "a627a18f-e9aa-4def-a44c-f31a75fe5b96": {
+      "vnum": "a627a18f-e9aa-4def-a44c-f31a75fe5b96",
+      "coords": {
+        "cx": -8,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "a28e2bc1-da54-4c2f-becb-f92ece01cef5",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "48b820dd-22b7-434d-9dab-e6544bbed29c",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "A Stone Wall",
+      "sector": "desert"
+    },
+    "48b820dd-22b7-434d-9dab-e6544bbed29c": {
+      "vnum": "48b820dd-22b7-434d-9dab-e6544bbed29c",
+      "coords": {
+        "cx": -4,
+        "cy": -2,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "a627a18f-e9aa-4def-a44c-f31a75fe5b96",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Another Sand Dune",
+      "sector": "desert"
+    },
+    "877bfbc0-a89a-4b36-821f-e20bd70c253c": {
+      "vnum": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+      "coords": {
+        "cx": 0,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "5b5f7ad8-1255-48f7-acbd-60ebfbf331ec",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Another Dune in the Desert",
+      "sector": "desert"
+    },
+    "b1f668a8-da12-45f3-814c-fc71d9f7d6c2": {
+      "vnum": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+      "coords": {
+        "cx": -4,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "48b820dd-22b7-434d-9dab-e6544bbed29c",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "a28e2bc1-da54-4c2f-becb-f92ece01cef5",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "More Sand and Dunes",
+      "sector": "desert"
+    },
+    "971da34b-ca08-4e3a-bb5e-aeeb69eabae4": {
+      "vnum": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+      "coords": {
+        "cx": -4,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "At the Edge of the Oasis (1)",
+      "sector": "desert"
+    },
+    "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29": {
+      "vnum": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+      "coords": {
+        "cx": 0,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (4)",
+      "sector": "swim"
+    },
+    "25b3b5b8-fa3f-4914-82c5-3aad33446e7e": {
+      "vnum": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+      "coords": {
+        "cx": 0,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "At the Edge of the Oasis (2)",
+      "sector": "desert"
+    },
+    "8c3949f9-f1ea-4c39-b57a-96ecc1b54059": {
+      "vnum": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+      "coords": {
+        "cx": 0,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "8982ac17-1aa0-42f0-b33f-4f4ce1256b64",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "e71222db-b400-4172-bad2-ae7d3013f181",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (5)",
+      "sector": "swim"
+    },
+    "a2f216a8-3112-4162-8a3f-fdb96eb69079": {
+      "vnum": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+      "coords": {
+        "cx": 0,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "853195fb-f087-4281-8385-3dfee9f551d6",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "0fa77bff-0b4a-4770-abb8-4dd6282d8155",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (6)",
+      "sector": "swim"
+    },
+    "73936ce1-f457-4d31-8199-ff53fdb0a3d0": {
+      "vnum": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+      "coords": {
+        "cx": 4,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "56648744-fe47-4292-9e60-a378157ae890",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "e71222db-b400-4172-bad2-ae7d3013f181",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "6751aaf4-a38a-4127-a337-402d9de04770",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (7)",
+      "sector": "swim"
+    },
+    "e71222db-b400-4172-bad2-ae7d3013f181": {
+      "vnum": "e71222db-b400-4172-bad2-ae7d3013f181",
+      "coords": {
+        "cx": 4,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (8)",
+      "sector": "swim"
+    },
+    "e41b75db-f602-48e1-8f48-c1e0371e2cc8": {
+      "vnum": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+      "coords": {
+        "cx": 4,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "e71222db-b400-4172-bad2-ae7d3013f181",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Inside the Oasis (9)",
+      "sector": "swim"
+    },
+    "f1c8282f-bb8b-4c79-9c20-98da7023fa01": {
+      "vnum": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+      "coords": {
+        "cx": 4,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "fa749285-876d-44a8-b96c-d264a85cda44",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "At the Edge of the Oasis (3)",
+      "sector": "desert"
+    },
+    "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d": {
+      "vnum": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+      "coords": {
+        "cx": 4,
+        "cy": -4,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "bdf8b648-83c2-4db1-b62e-836aba98cd52",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "59de313b-0391-4628-998b-bd2d22165ad8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "Another Dune",
+      "sector": "desert"
+    },
+    "fa749285-876d-44a8-b96c-d264a85cda44": {
+      "vnum": "fa749285-876d-44a8-b96c-d264a85cda44",
+      "coords": {
+        "cx": 8,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "59de313b-0391-4628-998b-bd2d22165ad8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "12e54433-2146-4e27-82c8-76737a736e01",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "End of the Dunes",
+      "sector": "desert"
+    },
+    "9a89ce77-a776-438f-be0a-5bbd7e5074e2": {
+      "vnum": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+      "coords": {
+        "cx": 8,
+        "cy": -8,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "fa749285-876d-44a8-b96c-d264a85cda44",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "41262f62-fdc2-43ab-88f7-d00b27c659ca",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "At the Edge of the Oasis (4)",
+      "sector": "desert"
+    },
+    "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8": {
+      "vnum": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+      "coords": {
+        "cx": 8,
+        "cy": -10,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "e71222db-b400-4172-bad2-ae7d3013f181",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "50620e8e-8908-4c51-a687-46b12829d907",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "6751aaf4-a38a-4127-a337-402d9de04770",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "A Random Sand Dune (3)",
+      "sector": "desert"
+    },
+    "6751aaf4-a38a-4127-a337-402d9de04770": {
+      "vnum": "6751aaf4-a38a-4127-a337-402d9de04770",
+      "coords": {
+        "cx": 8,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "5f96227a-ee8e-4bbd-85c8-7e4a5b1cd4a3",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "33fbd05f-bb48-4e13-92a1-9748a82df00e",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      },
+      "label": "A Random Sand Dune (4)",
       "sector": "desert"
     }
   }
