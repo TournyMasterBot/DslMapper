@@ -83,3 +83,21 @@ button, input, select, textarea {
   overflow: auto;
   padding: 16px;
 }
+
+/* Scrollable renderer page */
+.renderer-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.renderer-canvas {
+  flex: 1;
+  overflow: auto;         /* <-- enables scrollbars */
+  background: #0f0f10;    /* match renderer bg */
+}
+
+/* make sure the SVG doesn't add extra gaps */
+.renderer-canvas svg {
+  display: block;
+}

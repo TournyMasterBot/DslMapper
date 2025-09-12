@@ -8,6 +8,25 @@ export default function Toolbar() {
   const current = typeof state.level === 'number' ? state.level : 0
   const selectedVnum = state.selected || null
 
+  // keyboard shortcuts: Undo / Redo
+  const canUndo = state._past.length > 0
+  const canRedo = state._future.length > 0
+
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const z = e.key.toLowerCase() === 'z'
+      if (!(e.ctrlKey || e.metaKey) || !z) return
+      e.preventDefault()
+      if (e.shiftKey) {
+        if (canRedo) dispatch({ type: 'REDO' })
+      } else {
+        if (canUndo) dispatch({ type: 'UNDO' })
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [canUndo, canRedo, dispatch])
+
   // Seed editor level from localStorage (if renderer was opened first).
   React.useEffect(() => {
     const raw = localStorage.getItem(LVL_KEY)
@@ -58,6 +77,25 @@ export default function Toolbar() {
 
   return (
     <div className="toolbar" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      {/* Undo / Redo */}
+      <button
+        type="button"
+        onClick={() => dispatch({ type: 'UNDO' })}
+        disabled={!canUndo}
+        title="Undo (Ctrl/Cmd+Z)"
+      >
+        Undo
+      </button>
+      <button
+        type="button"
+        onClick={() => dispatch({ type: 'REDO' })}
+        disabled={!canRedo}
+        title="Redo (Ctrl/Cmd+Shift+Z)"
+      >
+        Redo
+      </button>
+
+      {/* Room add/delete */}
       <button
         type="button"
         onClick={() => {
@@ -84,8 +122,10 @@ export default function Toolbar() {
         Delete Selected
       </button>
 
+      {/* Renderer */}
       <button type="button" onClick={openRenderer}>Open Renderer ↗</button>
 
+      {/* Level control */}
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
         <label>View Level:</label>
         <input

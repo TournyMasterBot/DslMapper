@@ -1,3 +1,4 @@
+// src/render/OctRenderer.tsx
 import React from "react";
 import { Room, Direction, ExitDef, TerrainKind } from "../types";
 import { dirUnit, reverseDir } from "./dir";
@@ -10,13 +11,17 @@ type Props = {
   primaryVnum?: string | null;
   centerCx?: number;
   centerCy?: number;
+  /** 'container' = fill parent; 'content' = SVG wraps content tightly (scrolls in parent) */
+  fit?: "container" | "content";
 };
 
 const TILE = 40;
 const GAP = 4;
+// Extra gap before the arrowhead so it doesn't tuck under the tile.
+const HEAD_CLEAR = 10;
 
-/* ---------------- grid positioning ---------------- */
-function gridToPx(
+/* ---------------- helpers for two coordinate systems ---------------- */
+function gridToPx_centered(
   cx: number,
   cy: number,
   center: { cx: number; cy: number },
@@ -30,6 +35,46 @@ function gridToPx(
   const x = Math.round(w / 2 + dx * pitchX);
   const y = Math.round(h / 2 + dy * pitchY);
   return { x, y };
+}
+
+/** Tight content layout: compute mapping that places min grid at padding and sizes SVG to bounds. */
+function makeContentMapper(rooms: Room[], pad = 96) {
+  if (rooms.length === 0) {
+    return {
+      map: (_cx: number, _cy: number) => ({ x: pad + TILE / 2, y: pad + TILE / 2 }),
+      width: pad * 2 + TILE,
+      height: pad * 2 + TILE,
+    };
+  }
+
+  let minCx = Infinity,
+    maxCx = -Infinity,
+    minCy = Infinity,
+    maxCy = -Infinity;
+  for (const r of rooms) {
+    const { cx, cy } = r.coords;
+    if (cx < minCx) minCx = cx;
+    if (cx > maxCx) maxCx = cx;
+    if (cy < minCy) minCy = cy;
+    if (cy > maxCy) maxCy = cy;
+  }
+  const pitchX = TILE + GAP;
+  const pitchY = TILE + GAP;
+  const cols = maxCx - minCx + 1;
+  const rows = maxCy - minCy + 1;
+
+  const contentW = cols * pitchX;
+  const contentH = rows * pitchY;
+
+  const width = Math.max(320, Math.round(contentW + pad * 2));
+  const height = Math.max(240, Math.round(contentH + pad * 2));
+
+  const map = (cx: number, cy: number) => ({
+    x: pad + (cx - minCx) * pitchX + TILE / 2,
+    y: pad + (cy - minCy) * pitchY + TILE / 2,
+  });
+
+  return { map, width, height };
 }
 
 /* ---------------- octagon + label ---------------- */
@@ -84,7 +129,7 @@ function Oct({
     <>
       <polygon
         points={pts}
-        fill={`${sectorFill}E6`} /* ~90% opacity */
+        fill={`${sectorFill}E6`}
         stroke={isPrimary ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.22)"}
         strokeWidth={isPrimary ? 2 : 1}
       />
@@ -173,17 +218,13 @@ function DoorGlyph({
       />
       <circle cx={x} cy={y} r={bodyR} fill="none" stroke="#fff" strokeWidth={2} />
       <path
-        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${
-          2 * shackleR
-        },0`}
+        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${2 * shackleR},0`}
         fill="none"
         stroke="rgba(0,0,0,0.9)"
         strokeWidth={3}
       />
       <path
-        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${
-          2 * shackleR
-        },0`}
+        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${2 * shackleR},0`}
         fill="none"
         stroke="#fff"
         strokeWidth={2}
@@ -222,7 +263,6 @@ function ArrowHead({
 }
 
 /* ---------------- label rects for path-avoid ---------------- */
-const LABEL_FONT_SIZE = 12;
 const LABEL_LINE_STEP = 14;
 const CHAR_W = 7;
 const LABEL_PAD_X = 8;
@@ -248,19 +288,18 @@ function wrapLabel(s: string, maxChars = 14, maxLines = 3): string[] {
 
 function buildLabelRects(
   rooms: Room[],
-  center: { cx: number; cy: number },
-  size: { w: number; h: number }
+  map: (cx: number, cy: number) => { x: number; y: number }
 ): Map<string, Rect> {
   const rects = new Map<string, Rect>();
   for (const r of rooms) {
-    const { x, y } = gridToPx(r.coords.cx, r.coords.cy, center, size.w, size.h);
+    const { x, y } = map(r.coords.cx, r.coords.cy);
     const lines = wrapLabel(r.label || r.vnum);
     const maxChars = Math.max(1, ...lines.map((ln) => ln.length));
     const textW = maxChars * CHAR_W;
     const textH = lines.length * LABEL_LINE_STEP;
     const firstY = y - ((lines.length - 1) * LABEL_LINE_STEP) / 2;
     const boxX = x - textW / 2 - LABEL_PAD_X;
-    const boxY = firstY - LABEL_FONT_SIZE - LABEL_PAD_Y;
+    const boxY = firstY - 12 - LABEL_PAD_Y; // 12px font-size baseline
     const w = textW + LABEL_PAD_X * 2;
     const h = textH + LABEL_PAD_Y * 2;
     rects.set(r.vnum, { x: boxX, y: boxY, w, h });
@@ -326,10 +365,7 @@ function lineMinusRects(
     if (!merged.length || c[0] > merged[merged.length - 1][1]) {
       merged.push([...c]);
     } else {
-      merged[merged.length - 1][1] = Math.max(
-        merged[merged.length - 1][1],
-        c[1]
-      );
+      merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], c[1]);
     }
   }
   const out: Array<[number, number, number, number]> = [];
@@ -345,9 +381,7 @@ function lineMinusRects(
     }
     prev = Math.max(prev, b);
   }
-  if (prev < 1) {
-    out.push([x1 + (x2 - x1) * prev, y1 + (y2 - y1) * prev, x2, y2]);
-  }
+  if (prev < 1) out.push([x1 + (x2 - x1) * prev, y1 + (y2 - y1) * prev, x2, y2]);
   return out;
 }
 
@@ -358,37 +392,47 @@ export default function OctRenderer({
   primaryVnum,
   centerCx,
   centerCy,
+  fit = "container",
 }: Props) {
   const ref = React.useRef<SVGSVGElement | null>(null);
   const [size, setSize] = React.useState({ w: 800, h: 600 });
 
   React.useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (!ref.current) return;
     const obs = new ResizeObserver(([entry]) => {
       const cr = entry.contentRect;
       setSize({ w: cr.width, h: cr.height });
     });
-    obs.observe(el);
+    obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
 
-  const byVnum = React.useMemo(() => {
-    const m = new Map<string, Room>();
-    for (const r of rooms) m.set(r.vnum, r);
-    return m;
-  }, [rooms]);
+  // choose mapping
+  const contentMapper = React.useMemo(
+    () => (fit === "content" ? makeContentMapper(rooms, 120) : null),
+    [rooms, fit]
+  );
 
-  const center = React.useMemo(() => {
-    if (typeof centerCx === "number" && typeof centerCy === "number")
-      return { cx: centerCx, cy: centerCy };
-    if (primaryVnum) {
-      const pr = byVnum.get(primaryVnum);
-      if (pr) return { cx: pr.coords.cx, cy: pr.coords.cy };
-    }
-    return { cx: 0, cy: 0 };
-  }, [byVnum, primaryVnum, centerCx, centerCy]);
+  const map = React.useCallback(
+    (cx: number, cy: number) => {
+      if (contentMapper) return contentMapper.map(cx, cy);
+      // centered mode
+      const center = (() => {
+        if (typeof centerCx === "number" && typeof centerCy === "number")
+          return { cx: centerCx, cy: centerCy };
+        // prefer primary
+        if (primaryVnum) {
+          const pr = rooms.find((r) => r.vnum === primaryVnum);
+          if (pr) return { cx: pr.coords.cx, cy: pr.coords.cy };
+        }
+        return { cx: 0, cy: 0 };
+      })();
+      return gridToPx_centered(cx, cy, center, size.w, size.h);
+    },
+    [contentMapper, centerCx, centerCy, primaryVnum, rooms, size]
+  );
 
+  // edges list (skip U/D)
   type Edge = {
     from: Room;
     to: Room;
@@ -396,79 +440,59 @@ export default function OctRenderer({
     oneWay: boolean;
     door: ExitDef["door"];
   };
-
   const edges: Edge[] = React.useMemo(() => {
     const out: Edge[] = [];
+    const byVnum = new Map<string, Room>();
+    for (const r of rooms) byVnum.set(r.vnum, r);
     for (const r of rooms) {
-      for (const [dir, ex] of Object.entries(r.exits) as [
-        Direction,
-        ExitDef
-      ][]) {
+      for (const [dir, ex] of Object.entries(r.exits) as [Direction, ExitDef][]) {
         if (!ex?.to) continue;
-        if (dir === "U" || dir === "D") continue; // U/D are stored but not rendered as arrows
+        if (dir === "U" || dir === "D") continue;
         const tgt = byVnum.get(ex.to);
         if (!tgt) continue;
-        if (tgt.coords.vz !== level || r.coords.vz !== level) continue;
-        out.push({
-          from: r,
-          to: tgt,
-          dir,
-          oneWay: !!ex.oneWay,
-          door: ex.door ?? null,
-        });
+        if ((tgt.coords.vz ?? 0) !== level || (r.coords.vz ?? 0) !== level) continue;
+        out.push({ from: r, to: tgt, dir, oneWay: !!ex.oneWay, door: ex.door ?? null });
       }
     }
     return out;
-  }, [rooms, byVnum, level]);
+  }, [rooms, level]);
 
-  const labelRects = React.useMemo(
-    () => buildLabelRects(rooms, center, size),
-    [rooms, center, size]
-  );
+  const labelRects = React.useMemo(() => buildLabelRects(rooms, map), [rooms, map]);
+
+  // determine SVG size
+  const svgWidth = contentMapper ? contentMapper.width : "100%";
+  const svgHeight = contentMapper ? contentMapper.height : "100%";
 
   return (
     <svg
       ref={ref}
-      width="100%"
-      height="100%"
+      width={svgWidth}
+      height={svgHeight}
       style={{ display: "block", background: "#0f0f10" }}
     >
-      {/* edges (under tiles; glyphs/heads on top of each segment) */}
+      {/* edges */}
       {edges.map((e, i) => {
-        const a = gridToPx(
-          e.from.coords.cx,
-          e.from.coords.cy,
-          center,
-          size.w,
-          size.h
-        );
-        const b = gridToPx(
-          e.to.coords.cx,
-          e.to.coords.cy,
-          center,
-          size.w,
-          size.h
-        );
-
+        const a = map(e.from.coords.cx, e.from.coords.cy);
+        const b = map(e.to.coords.cx, e.to.coords.cy);
         const dx = b.x - a.x,
           dy = b.y - a.y;
         const { ux, uy } = dirUnit(dx, dy);
 
-        // Push line off octagon corners a bit
+        // push line off octagon; leave extra clearance before the arrowhead
         const r = TILE / 2;
         const k = 0.4142 * r;
         const margin = 4;
-        const inset = k + margin;
-        const ax = a.x + ux * inset,
-          ay = a.y + uy * inset;
-        const bx = b.x - ux * inset,
-          by = b.y - uy * inset;
+        const insetStart = k + margin;
+        const insetEnd = k + margin + HEAD_CLEAR;
 
-        // middle for door glyphs
+        const ax = a.x + ux * insetStart,
+          ay = a.y + uy * insetStart;
+        const bx = b.x - ux * insetEnd,
+          by = b.y - uy * insetEnd;
+
         const mx = (ax + bx) / 2;
         const my = (ay + by) / 2;
 
-        // avoid label boxes
         const avoid: Rect[] = [];
         for (const rr of rooms) {
           const rect = labelRects.get(rr.vnum);
@@ -498,7 +522,7 @@ export default function OctRenderer({
               />
             ))}
 
-            {/* door glyph at the mid point of full (uninset) arrow run */}
+            {/* doors */}
             {e.door && (e.door as any).type === "simple" && (
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="simple" />
             )}
@@ -506,7 +530,7 @@ export default function OctRenderer({
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="locked" />
             )}
 
-            {/* arrowhead on the very last visible forward segment */}
+            {/* arrowhead on last visible segment */}
             {(() => {
               const [lx1, ly1, lx2, ly2] = last;
               const ldx = lx2 - lx1,
@@ -515,37 +539,37 @@ export default function OctRenderer({
               return <ArrowHead x={lx2} y={ly2} ux={lux} uy={luy} />;
             })()}
 
-            {/* implied dotted reverse if not one-way and reverse missing */}
+            {/* implied dotted reverse with the same clearance on its “target” */}
             {!e.oneWay &&
               !targetHasReverse &&
-              lineMinusRects(bx, by, ax, ay, avoid, 6).map(
-                ([x1, y1, x2, y2], si) => (
-                  <line
-                    key={`rev-${si}`}
-                    x1={x1}
-                    y1={y1}
-                    x2={x2}
-                    y2={y2}
-                    stroke="rgba(255,255,255,0.8)"
-                    strokeWidth={2}
-                    strokeDasharray="6 6"
-                    strokeLinecap="round"
-                  />
-                )
-              )}
+              lineMinusRects(
+                // start at the (now in-cleared) target side and leave clearance at the new “target”
+                b.x - ux * insetStart,
+                by + uy * (insetEnd - insetStart),
+                a.x + ux * insetEnd,
+                a.y + uy * insetEnd,
+                avoid,
+                6
+              ).map(([x1, y1, x2, y2], si) => (
+                <line
+                  key={`rev-${si}`}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="rgba(255,255,255,0.8)"
+                  strokeWidth={2}
+                  strokeDasharray="6 6"
+                  strokeLinecap="round"
+                />
+              ))}
           </g>
         );
       })}
 
-      {/* tiles on top */}
+      {/* tiles */}
       {rooms.map((r) => {
-        const { x, y } = gridToPx(
-          r.coords.cx,
-          r.coords.cy,
-          center,
-          size.w,
-          size.h
-        );
+        const { x, y } = map(r.coords.cx, r.coords.cy);
         const sector: TerrainKind = r.sector ?? TerrainKind.Unknown;
         const sectorFill = TERRAIN_FILL[sector];
         const isPrimary = !!primaryVnum && r.vnum === primaryVnum;
