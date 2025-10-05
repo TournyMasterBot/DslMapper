@@ -2872,7 +2872,7 @@
         }
       }
     },
-    "revision": 3321
+    "revision": 5366
   },
   "rooms": {
     "hjga-mfa5x9pa": {
@@ -4488,6 +4488,8 @@
     },
     "8982ac17-1aa0-42f0-b33f-4f4ce1256b64": {
       "vnum": "8982ac17-1aa0-42f0-b33f-4f4ce1256b64",
+      "label": "Inside the Oasis (2)",
+      "sector": "swim",
       "coords": {
         "cx": -4,
         "cy": -10,
@@ -4517,12 +4519,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (2)",
-      "sector": "swim"
+      }
     },
     "fc370558-79e0-4a1a-b0cd-5a16b1d2830f": {
       "vnum": "fc370558-79e0-4a1a-b0cd-5a16b1d2830f",
+      "label": "Inside the Oasis (3)",
+      "sector": "swim",
       "coords": {
         "cx": -4,
         "cy": -8,
@@ -4558,12 +4560,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (3)",
-      "sector": "swim"
+      }
     },
     "3e413484-0883-4364-9736-b9d9104423ae": {
       "vnum": "3e413484-0883-4364-9736-b9d9104423ae",
+      "label": "Mouth of the Stone Arch",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -8,
@@ -4593,12 +4595,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Mouth of the Stone Arch",
-      "sector": "desert"
+      }
     },
     "f63d2c4f-9f4d-440d-a4da-868495c9e9f5": {
       "vnum": "f63d2c4f-9f4d-440d-a4da-868495c9e9f5",
+      "label": "Between the Stone Arch",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -10,
@@ -4622,12 +4624,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Between the Stone Arch",
-      "sector": "desert"
+      }
     },
     "3283b914-6939-4c10-a5d4-96957663086b": {
       "vnum": "3283b914-6939-4c10-a5d4-96957663086b",
+      "label": "Deep in the Rock Tunnel",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -12,
@@ -4645,12 +4647,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Deep in the Rock Tunnel",
-      "sector": "desert"
+      }
     },
     "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb": {
       "vnum": "7e2cc258-f7b5-4eb5-b0a9-edfbe5776bbb",
+      "label": "Along the Stone Wall (1)",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -6,
@@ -4680,12 +4682,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Along the Stone Wall (1)",
-      "sector": "desert"
+      }
     },
     "a28e2bc1-da54-4c2f-becb-f92ece01cef5": {
       "vnum": "a28e2bc1-da54-4c2f-becb-f92ece01cef5",
+      "label": "Along the Stone Wall (2)",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -4,
@@ -4715,12 +4717,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Along the Stone Wall (2)",
-      "sector": "desert"
+      }
     },
     "a627a18f-e9aa-4def-a44c-f31a75fe5b96": {
       "vnum": "a627a18f-e9aa-4def-a44c-f31a75fe5b96",
+      "label": "A Stone Wall",
+      "sector": "desert",
       "coords": {
         "cx": -8,
         "cy": -2,
@@ -4744,12 +4746,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "A Stone Wall",
-      "sector": "desert"
+      }
     },
     "48b820dd-22b7-434d-9dab-e6544bbed29c": {
       "vnum": "48b820dd-22b7-434d-9dab-e6544bbed29c",
+      "label": "Another Sand Dune",
+      "sector": "desert",
       "coords": {
         "cx": -4,
         "cy": -2,
@@ -4779,12 +4781,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Another Sand Dune",
-      "sector": "desert"
+      }
     },
     "877bfbc0-a89a-4b36-821f-e20bd70c253c": {
       "vnum": "877bfbc0-a89a-4b36-821f-e20bd70c253c",
+      "label": "Another Dune in the Desert",
+      "sector": "desert",
       "coords": {
         "cx": 0,
         "cy": -4,
@@ -4820,12 +4822,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Another Dune in the Desert",
-      "sector": "desert"
+      }
     },
     "b1f668a8-da12-45f3-814c-fc71d9f7d6c2": {
       "vnum": "b1f668a8-da12-45f3-814c-fc71d9f7d6c2",
+      "label": "More Sand and Dunes",
+      "sector": "desert",
       "coords": {
         "cx": -4,
         "cy": -4,
@@ -4861,12 +4863,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "More Sand and Dunes",
-      "sector": "desert"
+      }
     },
     "971da34b-ca08-4e3a-bb5e-aeeb69eabae4": {
       "vnum": "971da34b-ca08-4e3a-bb5e-aeeb69eabae4",
+      "label": "At the Edge of the Oasis (1)",
+      "sector": "desert",
       "coords": {
         "cx": -4,
         "cy": -6,
@@ -4902,12 +4904,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "At the Edge of the Oasis (1)",
-      "sector": "desert"
+      }
     },
     "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29": {
       "vnum": "5af5ce3e-78e0-42cb-a1b2-e2f6fa4c2c29",
+      "label": "Inside the Oasis (4)",
+      "sector": "swim",
       "coords": {
         "cx": 0,
         "cy": -8,
@@ -4943,12 +4945,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (4)",
-      "sector": "swim"
+      }
     },
     "25b3b5b8-fa3f-4914-82c5-3aad33446e7e": {
       "vnum": "25b3b5b8-fa3f-4914-82c5-3aad33446e7e",
+      "label": "At the Edge of the Oasis (2)",
+      "sector": "desert",
       "coords": {
         "cx": 0,
         "cy": -6,
@@ -4984,12 +4986,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "At the Edge of the Oasis (2)",
-      "sector": "desert"
+      }
     },
     "8c3949f9-f1ea-4c39-b57a-96ecc1b54059": {
       "vnum": "8c3949f9-f1ea-4c39-b57a-96ecc1b54059",
+      "label": "Inside the Oasis (5)",
+      "sector": "swim",
       "coords": {
         "cx": 0,
         "cy": -10,
@@ -5025,12 +5027,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (5)",
-      "sector": "swim"
+      }
     },
     "a2f216a8-3112-4162-8a3f-fdb96eb69079": {
       "vnum": "a2f216a8-3112-4162-8a3f-fdb96eb69079",
+      "label": "Inside the Oasis (6)",
+      "sector": "swim",
       "coords": {
         "cx": 0,
         "cy": -12,
@@ -5066,12 +5068,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (6)",
-      "sector": "swim"
+      }
     },
     "73936ce1-f457-4d31-8199-ff53fdb0a3d0": {
       "vnum": "73936ce1-f457-4d31-8199-ff53fdb0a3d0",
+      "label": "Inside the Oasis (7)",
+      "sector": "swim",
       "coords": {
         "cx": 4,
         "cy": -12,
@@ -5107,12 +5109,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (7)",
-      "sector": "swim"
+      }
     },
     "e71222db-b400-4172-bad2-ae7d3013f181": {
       "vnum": "e71222db-b400-4172-bad2-ae7d3013f181",
+      "label": "Inside the Oasis (8)",
+      "sector": "swim",
       "coords": {
         "cx": 4,
         "cy": -10,
@@ -5148,12 +5150,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (8)",
-      "sector": "swim"
+      }
     },
     "e41b75db-f602-48e1-8f48-c1e0371e2cc8": {
       "vnum": "e41b75db-f602-48e1-8f48-c1e0371e2cc8",
+      "label": "Inside the Oasis (9)",
+      "sector": "swim",
       "coords": {
         "cx": 4,
         "cy": -8,
@@ -5189,12 +5191,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Inside the Oasis (9)",
-      "sector": "swim"
+      }
     },
     "f1c8282f-bb8b-4c79-9c20-98da7023fa01": {
       "vnum": "f1c8282f-bb8b-4c79-9c20-98da7023fa01",
+      "label": "At the Edge of the Oasis (3)",
+      "sector": "desert",
       "coords": {
         "cx": 4,
         "cy": -6,
@@ -5230,12 +5232,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "At the Edge of the Oasis (3)",
-      "sector": "desert"
+      }
     },
     "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d": {
       "vnum": "5cc4fa18-614f-4a29-8fc8-d4b2f22cf57d",
+      "label": "Another Dune",
+      "sector": "desert",
       "coords": {
         "cx": 4,
         "cy": -4,
@@ -5271,12 +5273,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "Another Dune",
-      "sector": "desert"
+      }
     },
     "fa749285-876d-44a8-b96c-d264a85cda44": {
       "vnum": "fa749285-876d-44a8-b96c-d264a85cda44",
+      "label": "End of the Dunes",
+      "sector": "desert",
       "coords": {
         "cx": 8,
         "cy": -6,
@@ -5312,12 +5314,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "End of the Dunes",
-      "sector": "desert"
+      }
     },
     "9a89ce77-a776-438f-be0a-5bbd7e5074e2": {
       "vnum": "9a89ce77-a776-438f-be0a-5bbd7e5074e2",
+      "label": "At the Edge of the Oasis (4)",
+      "sector": "desert",
       "coords": {
         "cx": 8,
         "cy": -8,
@@ -5353,12 +5355,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "At the Edge of the Oasis (4)",
-      "sector": "desert"
+      }
     },
     "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8": {
       "vnum": "188ca3c6-08b9-4ab1-bdee-f38dfb99d1a8",
+      "label": "A Random Sand Dune (3)",
+      "sector": "desert",
       "coords": {
         "cx": 8,
         "cy": -10,
@@ -5394,12 +5396,12 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
-      },
-      "label": "A Random Sand Dune (3)",
-      "sector": "desert"
+      }
     },
     "6751aaf4-a38a-4127-a337-402d9de04770": {
       "vnum": "6751aaf4-a38a-4127-a337-402d9de04770",
+      "label": "A Random Sand Dune (4)",
+      "sector": "desert",
       "coords": {
         "cx": 8,
         "cy": -12,
@@ -5435,9 +5437,1474 @@
         "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
         "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
         "areaId": "02163a55-00e8-4ab2-bda4-c47100a6574a"
+      }
+    },
+    "137f2821-966d-4372-9502-be93815cf0f2": {
+      "vnum": "137f2821-966d-4372-9502-be93815cf0f2",
+      "coords": {
+        "cx": 0,
+        "cy": 0,
+        "vz": 0
       },
-      "label": "A Random Sand Dune (4)",
-      "sector": "desert"
+      "exits": {
+        "W": {
+          "to": "bc4bc03a-58bb-4b24-a390-ea4339d68896",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "d2101fdd-7e7e-44ee-bc64-ed0db446574f",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "86a7b91f-936f-419c-9e67-a1ed5d56f0f0",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "1: Main Road",
+      "sector": "indoors"
+    },
+    "bc4bc03a-58bb-4b24-a390-ea4339d68896": {
+      "vnum": "bc4bc03a-58bb-4b24-a390-ea4339d68896",
+      "coords": {
+        "cx": -4,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "137f2821-966d-4372-9502-be93815cf0f2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "38c5375d-e430-40ba-adbc-0a8d5fde6d3a",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Main Road (2)",
+      "sector": "fields"
+    },
+    "d2101fdd-7e7e-44ee-bc64-ed0db446574f": {
+      "vnum": "d2101fdd-7e7e-44ee-bc64-ed0db446574f",
+      "coords": {
+        "cx": 4,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "137f2821-966d-4372-9502-be93815cf0f2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "6a162c66-8143-4532-b745-240889c7a808",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "73d3da1c-454b-424b-9cfa-9466e77882fb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Main Road (3)",
+      "sector": "fields"
+    },
+    "6a162c66-8143-4532-b745-240889c7a808": {
+      "vnum": "6a162c66-8143-4532-b745-240889c7a808",
+      "coords": {
+        "cx": 8,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "d2101fdd-7e7e-44ee-bc64-ed0db446574f",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "342b15ae-692b-4f12-bee0-36bf68cad142",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "U": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Main Road (4)",
+      "sector": "fields"
+    },
+    "342b15ae-692b-4f12-bee0-36bf68cad142": {
+      "vnum": "342b15ae-692b-4f12-bee0-36bf68cad142",
+      "coords": {
+        "cx": 12,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "6a162c66-8143-4532-b745-240889c7a808",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "D": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "U": {
+          "to": "275b5d87-0869-4a17-b444-8c4f43b599b6",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Pathway",
+      "sector": "fields"
+    },
+    "275b5d87-0869-4a17-b444-8c4f43b599b6": {
+      "vnum": "275b5d87-0869-4a17-b444-8c4f43b599b6",
+      "coords": {
+        "cx": 12,
+        "cy": 0,
+        "vz": 1
+      },
+      "exits": {
+        "D": {
+          "to": "6a162c66-8143-4532-b745-240889c7a808",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "ca2ace70-7f6f-43a6-912a-8669102ec81f",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Top of the Hill (1)",
+      "sector": "indoors"
+    },
+    "ca2ace70-7f6f-43a6-912a-8669102ec81f": {
+      "vnum": "ca2ace70-7f6f-43a6-912a-8669102ec81f",
+      "coords": {
+        "cx": 16,
+        "cy": 0,
+        "vz": 1
+      },
+      "exits": {
+        "W": {
+          "to": "275b5d87-0869-4a17-b444-8c4f43b599b6",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "2274f08c-e845-4beb-bdc8-2dab99fd130d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Top of the Hill (2)",
+      "sector": "hills"
+    },
+    "2274f08c-e845-4beb-bdc8-2dab99fd130d": {
+      "vnum": "2274f08c-e845-4beb-bdc8-2dab99fd130d",
+      "coords": {
+        "cx": 20,
+        "cy": 0,
+        "vz": 1
+      },
+      "exits": {
+        "W": {
+          "to": "ca2ace70-7f6f-43a6-912a-8669102ec81f",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "D": {
+          "to": "3f15c6da-59e4-4b2b-80ef-884b4e0f41e2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Top of the Hill (3)",
+      "sector": "indoors"
+    },
+    "3f15c6da-59e4-4b2b-80ef-884b4e0f41e2": {
+      "vnum": "3f15c6da-59e4-4b2b-80ef-884b4e0f41e2",
+      "coords": {
+        "cx": 20,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "U": {
+          "to": "2274f08c-e845-4beb-bdc8-2dab99fd130d",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "03cc0249-5532-4180-a3c9-c86ed95fb278",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Path Up the Hill",
+      "sector": "hills"
+    },
+    "03cc0249-5532-4180-a3c9-c86ed95fb278": {
+      "vnum": "03cc0249-5532-4180-a3c9-c86ed95fb278",
+      "coords": {
+        "cx": 24,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "3f15c6da-59e4-4b2b-80ef-884b4e0f41e2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Narrow Beaten Path",
+      "sector": "forest",
+      "movement": {}
+    },
+    "73d3da1c-454b-424b-9cfa-9466e77882fb": {
+      "vnum": "73d3da1c-454b-424b-9cfa-9466e77882fb",
+      "coords": {
+        "cx": 4,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "d2101fdd-7e7e-44ee-bc64-ed0db446574f",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "6a7d67f4-b3e7-437b-9b31-296e9173eea8",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Dirt Road (1)",
+      "sector": "fields"
+    },
+    "6a7d67f4-b3e7-437b-9b31-296e9173eea8": {
+      "vnum": "6a7d67f4-b3e7-437b-9b31-296e9173eea8",
+      "coords": {
+        "cx": 4,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "73d3da1c-454b-424b-9cfa-9466e77882fb",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "a2e03bfc-fa0c-4e80-b10d-9bee685644b5",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "a9c2502e-8cae-4bad-bc86-2d6115ecf0de",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "ad6d7f44-9da1-426b-9845-9aa0725e0211",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Dirt Road (2)",
+      "sector": "fields"
+    },
+    "a2e03bfc-fa0c-4e80-b10d-9bee685644b5": {
+      "vnum": "a2e03bfc-fa0c-4e80-b10d-9bee685644b5",
+      "coords": {
+        "cx": 4,
+        "cy": -9,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "6a7d67f4-b3e7-437b-9b31-296e9173eea8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "f059d749-c18e-457a-97da-f59509606069",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Dirt Road (3)",
+      "sector": "fields"
+    },
+    "f059d749-c18e-457a-97da-f59509606069": {
+      "vnum": "f059d749-c18e-457a-97da-f59509606069",
+      "coords": {
+        "cx": 4,
+        "cy": -12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "a2e03bfc-fa0c-4e80-b10d-9bee685644b5",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A House",
+      "sector": "indoors"
+    },
+    "a9c2502e-8cae-4bad-bc86-2d6115ecf0de": {
+      "vnum": "a9c2502e-8cae-4bad-bc86-2d6115ecf0de",
+      "coords": {
+        "cx": 8,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "6a7d67f4-b3e7-437b-9b31-296e9173eea8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "deb6a3e9-953a-4608-8e17-b24af9421a60",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "3128af67-b586-4f98-8db8-e11c565cc723",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "bfdc4b52-39df-4a9c-ac62-6508c8c91abb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (1)",
+      "sector": "fields"
+    },
+    "deb6a3e9-953a-4608-8e17-b24af9421a60": {
+      "vnum": "deb6a3e9-953a-4608-8e17-b24af9421a60",
+      "coords": {
+        "cx": 8,
+        "cy": -9,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "a9c2502e-8cae-4bad-bc86-2d6115ecf0de",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "5a570c6f-bfc2-4f94-b2bf-e1b2e288c8bd",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (2)",
+      "sector": "fields"
+    },
+    "5a570c6f-bfc2-4f94-b2bf-e1b2e288c8bd": {
+      "vnum": "5a570c6f-bfc2-4f94-b2bf-e1b2e288c8bd",
+      "coords": {
+        "cx": 12,
+        "cy": -9,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "deb6a3e9-953a-4608-8e17-b24af9421a60",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "3128af67-b586-4f98-8db8-e11c565cc723",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (3)",
+      "sector": "fields"
+    },
+    "3128af67-b586-4f98-8db8-e11c565cc723": {
+      "vnum": "3128af67-b586-4f98-8db8-e11c565cc723",
+      "coords": {
+        "cx": 12,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "5a570c6f-bfc2-4f94-b2bf-e1b2e288c8bd",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "a9c2502e-8cae-4bad-bc86-2d6115ecf0de",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "ef7e45d4-340d-434b-a579-d1117e34a585",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": null,
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (4)",
+      "sector": "fields"
+    },
+    "ef7e45d4-340d-434b-a579-d1117e34a585": {
+      "vnum": "ef7e45d4-340d-434b-a579-d1117e34a585",
+      "coords": {
+        "cx": 12,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "3128af67-b586-4f98-8db8-e11c565cc723",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "bfdc4b52-39df-4a9c-ac62-6508c8c91abb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (5)",
+      "sector": "fields"
+    },
+    "bfdc4b52-39df-4a9c-ac62-6508c8c91abb": {
+      "vnum": "bfdc4b52-39df-4a9c-ac62-6508c8c91abb",
+      "coords": {
+        "cx": 8,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "ef7e45d4-340d-434b-a579-d1117e34a585",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "a9c2502e-8cae-4bad-bc86-2d6115ecf0de",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Eastern Field (6)",
+      "sector": "fields"
+    },
+    "ad6d7f44-9da1-426b-9845-9aa0725e0211": {
+      "vnum": "ad6d7f44-9da1-426b-9845-9aa0725e0211",
+      "coords": {
+        "cx": 0,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "6a7d67f4-b3e7-437b-9b31-296e9173eea8",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "8786ae61-1ef5-4faf-9323-d29d5df68a06",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "e9ee7a0a-11c2-4cfb-a8d3-d1ef70c71d46",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "91b08ebc-e380-4e42-b2fc-0788ec6309f2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (1)",
+      "sector": "fields"
+    },
+    "8786ae61-1ef5-4faf-9323-d29d5df68a06": {
+      "vnum": "8786ae61-1ef5-4faf-9323-d29d5df68a06",
+      "coords": {
+        "cx": 0,
+        "cy": -9,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "ad6d7f44-9da1-426b-9845-9aa0725e0211",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "1f16fb75-cc48-4a98-b61a-cfadb3588c80",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (2)",
+      "sector": "fields"
+    },
+    "1f16fb75-cc48-4a98-b61a-cfadb3588c80": {
+      "vnum": "1f16fb75-cc48-4a98-b61a-cfadb3588c80",
+      "coords": {
+        "cx": -4,
+        "cy": -9,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "8786ae61-1ef5-4faf-9323-d29d5df68a06",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "91b08ebc-e380-4e42-b2fc-0788ec6309f2",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (3)",
+      "sector": "fields"
+    },
+    "91b08ebc-e380-4e42-b2fc-0788ec6309f2": {
+      "vnum": "91b08ebc-e380-4e42-b2fc-0788ec6309f2",
+      "coords": {
+        "cx": -4,
+        "cy": -6,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "1f16fb75-cc48-4a98-b61a-cfadb3588c80",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "6af638ef-bb7f-4ccf-a550-0890a83c63f6",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "ad6d7f44-9da1-426b-9845-9aa0725e0211",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (4)",
+      "sector": "fields"
+    },
+    "6af638ef-bb7f-4ccf-a550-0890a83c63f6": {
+      "vnum": "6af638ef-bb7f-4ccf-a550-0890a83c63f6",
+      "coords": {
+        "cx": -4,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "91b08ebc-e380-4e42-b2fc-0788ec6309f2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "e9ee7a0a-11c2-4cfb-a8d3-d1ef70c71d46",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (5)",
+      "sector": "fields"
+    },
+    "e9ee7a0a-11c2-4cfb-a8d3-d1ef70c71d46": {
+      "vnum": "e9ee7a0a-11c2-4cfb-a8d3-d1ef70c71d46",
+      "coords": {
+        "cx": 0,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "6af638ef-bb7f-4ccf-a550-0890a83c63f6",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "ad6d7f44-9da1-426b-9845-9aa0725e0211",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Western Field (6)",
+      "sector": "fields"
+    },
+    "38c5375d-e430-40ba-adbc-0a8d5fde6d3a": {
+      "vnum": "38c5375d-e430-40ba-adbc-0a8d5fde6d3a",
+      "coords": {
+        "cx": -8,
+        "cy": 0,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "bc4bc03a-58bb-4b24-a390-ea4339d68896",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "110f4e74-7ce4-41fa-8f47-8ffbdf23153f",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "28e51317-de65-4bd9-9fce-c5162c1866cc",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "U": {
+          "to": "2dbb92fb-f098-42b4-9dbb-1b16a07868ad",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Entry Room",
+      "sector": "indoors"
+    },
+    "110f4e74-7ce4-41fa-8f47-8ffbdf23153f": {
+      "vnum": "110f4e74-7ce4-41fa-8f47-8ffbdf23153f",
+      "coords": {
+        "cx": -8,
+        "cy": -3,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "38c5375d-e430-40ba-adbc-0a8d5fde6d3a",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Study",
+      "sector": "indoors"
+    },
+    "28e51317-de65-4bd9-9fce-c5162c1866cc": {
+      "vnum": "28e51317-de65-4bd9-9fce-c5162c1866cc",
+      "coords": {
+        "cx": -8,
+        "cy": 3,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "38c5375d-e430-40ba-adbc-0a8d5fde6d3a",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Living Room",
+      "sector": "indoors"
+    },
+    "2dbb92fb-f098-42b4-9dbb-1b16a07868ad": {
+      "vnum": "2dbb92fb-f098-42b4-9dbb-1b16a07868ad",
+      "coords": {
+        "cx": -8,
+        "cy": 0,
+        "vz": 1
+      },
+      "exits": {
+        "D": {
+          "to": "38c5375d-e430-40ba-adbc-0a8d5fde6d3a",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "775118b0-618d-40ea-bb72-d71a870c0c76",
+          "oneWay": false,
+          "door": {
+            "type": "simple"
+          },
+          "status": "unknown"
+        },
+        "S": {
+          "to": "77d7d755-5e77-4a6d-9a5b-9dd420303798",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Top of the Stairs",
+      "sector": "indoors"
+    },
+    "775118b0-618d-40ea-bb72-d71a870c0c76": {
+      "vnum": "775118b0-618d-40ea-bb72-d71a870c0c76",
+      "coords": {
+        "cx": -8,
+        "cy": -3,
+        "vz": 1
+      },
+      "exits": {
+        "S": {
+          "to": "2dbb92fb-f098-42b4-9dbb-1b16a07868ad",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Bedroom",
+      "sector": "indoors"
+    },
+    "77d7d755-5e77-4a6d-9a5b-9dd420303798": {
+      "vnum": "77d7d755-5e77-4a6d-9a5b-9dd420303798",
+      "coords": {
+        "cx": -8,
+        "cy": 3,
+        "vz": 1
+      },
+      "exits": {
+        "N": {
+          "to": "2dbb92fb-f098-42b4-9dbb-1b16a07868ad",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "Master Bedroom",
+      "sector": "indoors"
+    },
+    "86a7b91f-936f-419c-9e67-a1ed5d56f0f0": {
+      "vnum": "86a7b91f-936f-419c-9e67-a1ed5d56f0f0",
+      "coords": {
+        "cx": 0,
+        "cy": 3,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "137f2821-966d-4372-9502-be93815cf0f2",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "45fe81a0-204d-4124-9e48-78c04ed569f4",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Dirt Road (4)",
+      "sector": "fields"
+    },
+    "45fe81a0-204d-4124-9e48-78c04ed569f4": {
+      "vnum": "45fe81a0-204d-4124-9e48-78c04ed569f4",
+      "coords": {
+        "cx": 0,
+        "cy": 6,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "86a7b91f-936f-419c-9e67-a1ed5d56f0f0",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "0da7cc9d-ef12-4310-9165-aea0b1c9f529",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "A Dirt Road (5)",
+      "sector": "fields"
+    },
+    "0da7cc9d-ef12-4310-9165-aea0b1c9f529": {
+      "vnum": "0da7cc9d-ef12-4310-9165-aea0b1c9f529",
+      "coords": {
+        "cx": 4,
+        "cy": 6,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "45fe81a0-204d-4124-9e48-78c04ed569f4",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "a42b5bf8-7943-42c3-8bd0-f3b64e0f1afb",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "1a7dd698-45d5-4d33-80ee-8cddb152399a",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (1)",
+      "sector": "fields"
+    },
+    "a42b5bf8-7943-42c3-8bd0-f3b64e0f1afb": {
+      "vnum": "a42b5bf8-7943-42c3-8bd0-f3b64e0f1afb",
+      "coords": {
+        "cx": 8,
+        "cy": 6,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "0da7cc9d-ef12-4310-9165-aea0b1c9f529",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "7833eb73-0a65-4ae8-99c2-242e2c3a0786",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "S": {
+          "to": "f660f102-1168-4178-9568-d02147eef04a",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (2)",
+      "sector": "fields"
+    },
+    "7833eb73-0a65-4ae8-99c2-242e2c3a0786": {
+      "vnum": "7833eb73-0a65-4ae8-99c2-242e2c3a0786",
+      "coords": {
+        "cx": 12,
+        "cy": 6,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "a42b5bf8-7943-42c3-8bd0-f3b64e0f1afb",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "3ca5a8da-32e9-47e7-9dce-f01dcc0e3c61",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (3)",
+      "sector": "fields"
+    },
+    "3ca5a8da-32e9-47e7-9dce-f01dcc0e3c61": {
+      "vnum": "3ca5a8da-32e9-47e7-9dce-f01dcc0e3c61",
+      "coords": {
+        "cx": 12,
+        "cy": 9,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "7833eb73-0a65-4ae8-99c2-242e2c3a0786",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "6ba3fc0e-5526-44a4-a73e-3594ae9f050d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "f660f102-1168-4178-9568-d02147eef04a",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (4)",
+      "sector": "fields"
+    },
+    "6ba3fc0e-5526-44a4-a73e-3594ae9f050d": {
+      "vnum": "6ba3fc0e-5526-44a4-a73e-3594ae9f050d",
+      "coords": {
+        "cx": 12,
+        "cy": 12,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "3ca5a8da-32e9-47e7-9dce-f01dcc0e3c61",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "09595bba-6268-4eb2-8c6d-f8850cec3c77",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "W": {
+          "to": "ec85718b-1b0c-44a5-bda1-173c7214302d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (5)",
+      "sector": "fields"
+    },
+    "09595bba-6268-4eb2-8c6d-f8850cec3c77": {
+      "vnum": "09595bba-6268-4eb2-8c6d-f8850cec3c77",
+      "coords": {
+        "cx": 12,
+        "cy": 15,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "6ba3fc0e-5526-44a4-a73e-3594ae9f050d",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "54d2ec99-5fe8-4239-8f87-cbf3054710df",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (6)",
+      "sector": "fields"
+    },
+    "54d2ec99-5fe8-4239-8f87-cbf3054710df": {
+      "vnum": "54d2ec99-5fe8-4239-8f87-cbf3054710df",
+      "coords": {
+        "cx": 8,
+        "cy": 15,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "09595bba-6268-4eb2-8c6d-f8850cec3c77",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "2d0ae8cf-37fb-4d74-8692-ffcaf60e6fce",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "N": {
+          "to": "ec85718b-1b0c-44a5-bda1-173c7214302d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (7)",
+      "sector": "fields"
+    },
+    "2d0ae8cf-37fb-4d74-8692-ffcaf60e6fce": {
+      "vnum": "2d0ae8cf-37fb-4d74-8692-ffcaf60e6fce",
+      "coords": {
+        "cx": 4,
+        "cy": 15,
+        "vz": 0
+      },
+      "exits": {
+        "E": {
+          "to": "54d2ec99-5fe8-4239-8f87-cbf3054710df",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "e695234c-1ce7-4ea8-9e59-2d67bf2f8416",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (8)",
+      "sector": "fields"
+    },
+    "e695234c-1ce7-4ea8-9e59-2d67bf2f8416": {
+      "vnum": "e695234c-1ce7-4ea8-9e59-2d67bf2f8416",
+      "coords": {
+        "cx": 4,
+        "cy": 12,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "2d0ae8cf-37fb-4d74-8692-ffcaf60e6fce",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "1a7dd698-45d5-4d33-80ee-8cddb152399a",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        },
+        "E": {
+          "to": "ec85718b-1b0c-44a5-bda1-173c7214302d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (9)",
+      "sector": "fields"
+    },
+    "1a7dd698-45d5-4d33-80ee-8cddb152399a": {
+      "vnum": "1a7dd698-45d5-4d33-80ee-8cddb152399a",
+      "coords": {
+        "cx": 4,
+        "cy": 9,
+        "vz": 0
+      },
+      "exits": {
+        "S": {
+          "to": "e695234c-1ce7-4ea8-9e59-2d67bf2f8416",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "0da7cc9d-ef12-4310-9165-aea0b1c9f529",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "f660f102-1168-4178-9568-d02147eef04a",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (10)",
+      "sector": "fields"
+    },
+    "f660f102-1168-4178-9568-d02147eef04a": {
+      "vnum": "f660f102-1168-4178-9568-d02147eef04a",
+      "coords": {
+        "cx": 8,
+        "cy": 9,
+        "vz": 0
+      },
+      "exits": {
+        "W": {
+          "to": "1a7dd698-45d5-4d33-80ee-8cddb152399a",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "N": {
+          "to": "a42b5bf8-7943-42c3-8bd0-f3b64e0f1afb",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "3ca5a8da-32e9-47e7-9dce-f01dcc0e3c61",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "ec85718b-1b0c-44a5-bda1-173c7214302d",
+          "oneWay": false,
+          "door": null,
+          "status": "unknown"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (11)",
+      "sector": "fields"
+    },
+    "ec85718b-1b0c-44a5-bda1-173c7214302d": {
+      "vnum": "ec85718b-1b0c-44a5-bda1-173c7214302d",
+      "coords": {
+        "cx": 8,
+        "cy": 12,
+        "vz": 0
+      },
+      "exits": {
+        "N": {
+          "to": "f660f102-1168-4178-9568-d02147eef04a",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "W": {
+          "to": "e695234c-1ce7-4ea8-9e59-2d67bf2f8416",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "E": {
+          "to": "6ba3fc0e-5526-44a4-a73e-3594ae9f050d",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        },
+        "S": {
+          "to": "54d2ec99-5fe8-4239-8f87-cbf3054710df",
+          "oneWay": false,
+          "door": null,
+          "status": "created"
+        }
+      },
+      "category": {
+        "worldId": "d7ed91df-00f7-5b6f-8146-ac1c19525719",
+        "continentId": "55c485dc-7782-555e-b1f6-2d59879dcda0",
+        "areaId": "518e61e6-4f2c-59dc-99ba-ddbfacafc61e"
+      },
+      "label": "South Fields (12)",
+      "sector": "fields"
     }
   }
 }
