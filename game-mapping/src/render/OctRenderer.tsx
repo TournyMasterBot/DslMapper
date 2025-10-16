@@ -21,6 +21,54 @@ const GAP = 4;
 const HEAD_CLEAR = 10;
 
 /* ---------------- helpers for two coordinate systems ---------------- */
+// 8-way unit vectors for declared exits (not computed from geometry)
+const DIR_VEC: Record<Direction, { ux: number; uy: number }> = {
+  N:  { ux:  0, uy: -1 },
+  NE: { ux:  Math.SQRT1_2, uy: -Math.SQRT1_2 },
+  E:  { ux:  1, uy:  0 },
+  SE: { ux:  Math.SQRT1_2, uy:  Math.SQRT1_2 },
+  S:  { ux:  0, uy:  1 },
+  SW: { ux: -Math.SQRT1_2, uy:  Math.SQRT1_2 },
+  W:  { ux: -1, uy:  0 },
+  NW: { ux: -Math.SQRT1_2, uy: -Math.SQRT1_2 },
+  U:  { ux: 0, uy: 0 },  // not used here
+  D:  { ux: 0, uy: 0 },  // not used here
+};
+
+// Return a point on the octagon edge for a given direction, with a small push out/in.
+function edgePortForDir(
+  cx: number,
+  cy: number,
+  dir: Direction,
+  push: number
+) {
+  const r = TILE / 2;
+  const k = 0.4142 * r; // same k used in Oct()
+  // Edge midpoints for octagon aligned to 8 directions
+  const offsets: Record<Exclude<Direction, "U" | "D">, [number, number]> = {
+    N:  [0, -r],
+    NE: [ r, -k],
+    E:  [ r,  0],
+    SE: [ r,  k],
+    S:  [0,  r],
+    SW: [-r,  k],
+    W:  [-r,  0],
+    NW: [-r, -k],
+  };
+  const dv = DIR_VEC[dir] || { ux: 0, uy: 0 };
+  const off =
+    dir === "U" || dir === "D"
+      ? [0, 0]
+      : offsets[dir as Exclude<Direction, "U" | "D">];
+
+  const baseX = cx + off[0];
+  const baseY = cy + off[1];
+  // push>0 goes outward from the tile, push<0 goes inward
+  const px = baseX + dv.ux * push;
+  const py = baseY + dv.uy * push;
+  return { x: px, y: py };
+}
+
 function gridToPx_centered(
   cx: number,
   cy: number,
@@ -75,6 +123,53 @@ function makeContentMapper(rooms: Room[], pad = 96) {
   });
 
   return { map, width, height };
+}
+
+/* ---------------- tiny helpers for the curve special-case ---------------- */
+function roomsCentroidPx(
+  rooms: Room[],
+  map: (cx: number, cy: number) => { x: number; y: number }
+) {
+  if (!rooms.length) return { x: 0, y: 0 };
+  let sx = 0,
+    sy = 0;
+  for (const r of rooms) {
+    const p = map(r.coords.cx, r.coords.cy);
+    sx += p.x;
+    sy += p.y;
+  }
+  return { x: sx / rooms.length, y: sy / rooms.length };
+}
+
+function quadPoint(
+  t: number,
+  p0: [number, number],
+  p1: [number, number],
+  p2: [number, number]
+): [number, number] {
+  const mt = 1 - t;
+  const a = mt * mt, b = 2 * mt * t, c = t * t;
+  return [a * p0[0] + b * p1[0] + c * p2[0], a * p0[1] + b * p1[1] + c * p2[1]];
+}
+
+function chopQuadToSegments(
+  p0: [number, number],
+  p1: [number, number],
+  p2: [number, number],
+  stepPx = 10
+): Array<[number, number, number, number]> {
+  const dx = p2[0] - p0[0], dy = p2[1] - p0[1];
+  const L = Math.hypot(dx, dy);
+  const N = Math.max(6, Math.min(80, Math.ceil(L / stepPx)));
+  const pts: [number, number][] = [];
+  for (let i = 0; i <= N; i++) pts.push(quadPoint(i / N, p0, p1, p2));
+  const out: Array<[number, number, number, number]> = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [x1, y1] = pts[i];
+    const [x2, y2] = pts[i + 1];
+    out.push([x1, y1, x2, y2]);
+  }
+  return out;
 }
 
 /* ---------------- octagon + label ---------------- */
@@ -432,6 +527,9 @@ export default function OctRenderer({
     [contentMapper, centerCx, centerCy, primaryVnum, rooms, size]
   );
 
+  // centroid used by the curve special-case
+  const clusterCenter = React.useMemo(() => roomsCentroidPx(rooms, map), [rooms, map]);
+
   // edges list (skip U/D)
   type Edge = {
     from: Room;
@@ -499,12 +597,97 @@ export default function OctRenderer({
           if (rect) avoid.push(rect);
         }
 
-        const segments = lineMinusRects(ax, ay, bx, by, avoid, 6);
+        const segmentsStraight = lineMinusRects(ax, ay, bx, by, avoid, 6);
         const rev = reverseDir(e.dir);
         const targetHasReverse =
           !!e.to.exits?.[rev] && e.to.exits[rev]?.to === e.from.vnum;
 
-        const last = segments[segments.length - 1] || [ax, ay, bx, by];
+        const lastStraight = segmentsStraight[segmentsStraight.length - 1] || [ax, ay, bx, by];
+
+        // ----- SPECIAL CASE: curve only when declared direction mismatches geometry -----
+        const declared = DIR_VEC[e.dir];
+        const dot = declared.ux * ux + declared.uy * uy; // 1=aligned, -1=opposite
+        const SHOULD_CURVE = dot < 0.3; // tune threshold
+
+        let segments = segmentsStraight;
+        let arrowTip: { x: number; y: number };
+        let arrowDir: { ux: number; uy: number };
+
+        if (!SHOULD_CURVE) {
+          // Happy path (unchanged)
+          const [lx1, ly1, lx2, ly2] = lastStraight;
+          const { ux: lux, uy: luy } = dirUnit(lx2 - lx1, ly2 - ly1);
+          arrowTip  = { x: lx2, y: ly2 };
+          arrowDir  = { ux: lux, uy: luy };
+        } else {
+          // Curve leaves/arrives on the declared faces with short straight leaders
+          const exitVec  = DIR_VEC[e.dir];
+          const enterVec = DIR_VEC[reverseDir(e.dir)];
+
+          const startPort = edgePortForDir(a.x, a.y, e.dir, +8);
+          const endOuter  = edgePortForDir(b.x, b.y, reverseDir(e.dir), +10);
+          const endPort   = {
+            x: endOuter.x - enterVec.ux * HEAD_CLEAR,
+            y: endOuter.y - enterVec.uy * HEAD_CLEAR,
+          };
+
+          // leaders
+          const LEAD_OUT = 55; // px
+          const LEAD_IN  = 24; // px
+
+          const leadStart = {
+            x: startPort.x + exitVec.ux * LEAD_OUT,
+            y: startPort.y + exitVec.uy * LEAD_OUT,
+          };
+          const leadEnd = {
+            x: endPort.x - enterVec.ux * LEAD_IN,
+            y: endPort.y - enterVec.uy * LEAD_IN,
+          };
+
+          // control point for a gentle bulge (based on chord mid + perpendicular offset)
+          const chordX = leadEnd.x - leadStart.x;
+          const chordY = leadEnd.y - leadStart.y;
+          const L = Math.hypot(chordX, chordY) || 1;
+          const ccUx = chordX / L, ccUy = chordY / L;
+          const pxn = -ccUy, pyn = ccUx;
+
+          const midx = (leadStart.x + leadEnd.x) / 2;
+          const midy = (leadStart.y + leadEnd.y) / 2;
+          const toCenX = clusterCenter.x - midx;
+          const toCenY = clusterCenter.y - midy;
+          const side = pxn * toCenX + pyn * toCenY > 0 ? -1 : 1;
+
+          const bulge = Math.min(240, Math.max(60, 0.55 * L));
+          const ctrl = { x: midx + pxn * bulge * side, y: midy + pyn * bulge * side };
+
+          // assemble: startPort -> leadStart (straight), curve leadStart->leadEnd, leadEnd -> endPort (straight)
+          const segs: Array<[number, number, number, number]> = [];
+
+          // start straight
+          for (const s of lineMinusRects(startPort.x, startPort.y, leadStart.x, leadStart.y, avoid, 6))
+            segs.push(s);
+
+          // curved middle
+          const tiny = chopQuadToSegments(
+            [leadStart.x, leadStart.y],
+            [ctrl.x, ctrl.y],
+            [leadEnd.x, leadEnd.y],
+            10
+          );
+          for (const [x1, y1, x2, y2] of tiny) {
+            for (const p of lineMinusRects(x1, y1, x2, y2, avoid, 6)) segs.push(p);
+          }
+
+          // final straight into the face
+          for (const s of lineMinusRects(leadEnd.x, leadEnd.y, endPort.x, endPort.y, avoid, 6))
+            segs.push(s);
+
+          segments = segs;
+
+          // Arrow sits at the endPort, pointing exactly along the declared entering vector
+          arrowTip = { x: endPort.x, y: endPort.y };
+          arrowDir = { ux: enterVec.ux, uy: enterVec.uy };
+        }
 
         return (
           <g key={i} pointerEvents="none">
@@ -522,7 +705,7 @@ export default function OctRenderer({
               />
             ))}
 
-            {/* doors */}
+            {/* doors (kept as before: midpoint of straight chord) */}
             {e.door && (e.door as any).type === "simple" && (
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="simple" />
             )}
@@ -530,22 +713,16 @@ export default function OctRenderer({
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="locked" />
             )}
 
-            {/* arrowhead on last visible segment */}
-            {(() => {
-              const [lx1, ly1, lx2, ly2] = last;
-              const ldx = lx2 - lx1,
-                ldy = ly2 - ly1;
-              const { ux: lux, uy: luy } = dirUnit(ldx, ldy);
-              return <ArrowHead x={lx2} y={ly2} ux={lux} uy={luy} />;
-            })()}
+            {/* arrowhead */}
+            <ArrowHead x={arrowTip.x} y={arrowTip.y} ux={arrowDir.ux} uy={arrowDir.uy} />
 
-            {/* implied dotted reverse with the same clearance on its “target” */}
+            {/* implied dotted reverse with the same clearance on its “target” (still straight) */}
             {!e.oneWay &&
               !targetHasReverse &&
               lineMinusRects(
                 // start at the (now in-cleared) target side and leave clearance at the new “target”
-                b.x - ux * insetStart,
-                by + uy * (insetEnd - insetStart),
+                b.x - ux * (k + margin),
+                by + uy * (insetEnd - (k + margin)),
                 a.x + ux * insetEnd,
                 a.y + uy * insetEnd,
                 avoid,
