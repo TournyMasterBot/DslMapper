@@ -495,11 +495,8 @@ function lineMinusRects(
 }
 
 /* ---------------- colors ---------------- */
-// High-contrast palette for straight edges (Tableau-ish / ColorBrewer style).
-const STRAIGHT_PALETTE = [
-  "#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948",
-  "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", "#86BCB6", "#8CD17D"
-];
+// Single neutral for straight edges:
+const STRAIGHT_COLOR = "#E6E6E6"; // subtle off-white that pops on dark bg
 
 // Bright accent palette for curved edges so they pop.
 const CURVE_PALETTE = [
@@ -511,15 +508,11 @@ const CURVE_PALETTE = [
   "#B967FF"  // violet
 ];
 
-// quick djb2 hash
+// quick djb2 hash (for curves only)
 function hstr(s: string) {
   let h = 5381;
   for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
   return h >>> 0;
-}
-function pickStraightColor(from: string, to: string, i: number) {
-  const base = hstr(`${from}->${to}`) + i * 131;
-  return STRAIGHT_PALETTE[base % STRAIGHT_PALETTE.length];
 }
 function pickCurveColor(from: string, to: string, i: number) {
   const base = hstr(`curve:${from}->${to}`) + i * 97;
@@ -664,7 +657,7 @@ export default function OctRenderer({
         let arrowDir: { ux: number; uy: number };
         const strokeColor = SHOULD_CURVE
           ? pickCurveColor(e.from.vnum, e.to.vnum, i)
-          : pickStraightColor(e.from.vnum, e.to.vnum, i);
+          : STRAIGHT_COLOR;
 
         if (!SHOULD_CURVE) {
           // Happy path (unchanged)
