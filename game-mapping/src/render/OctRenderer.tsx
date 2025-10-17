@@ -322,8 +322,7 @@ function DoorGlyph({
         d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${2 * shackleR},0`}
         fill="none"
         stroke="#fff"
-        strokeWidth={2}
-      />
+        strokeWidth={2} />
     </g>
   );
 }
@@ -334,11 +333,13 @@ function ArrowHead({
   y,
   ux,
   uy,
+  color = "rgba(255,255,255,0.9)",
 }: {
   x: number;
   y: number;
   ux: number;
   uy: number;
+  color?: string;
 }) {
   const size = 8;
   const px = -uy,
@@ -352,12 +353,12 @@ function ArrowHead({
   return (
     <polygon
       points={`${tipX},${tipY} ${leftX},${leftY} ${rightX},${rightY}`}
-      fill="rgba(255,255,255,0.9)"
+      fill={color}
     />
   );
 }
 
-/* ---------------- label rects for path-avoid ---------------- */
+/* ---------------- label/tile rects for path-avoid ---------------- */
 const LABEL_LINE_STEP = 14;
 const CHAR_W = 7;
 const LABEL_PAD_X = 8;
@@ -402,6 +403,22 @@ function buildLabelRects(
   return rects;
 }
 
+// approximate each tile (octagon) as an axis-aligned square obstacle.
+const TILE_PAD = 6; // tweak: how far lines should stay away from tile fill
+function buildTileRects(
+  rooms: Room[],
+  map: (cx: number, cy: number) => { x: number; y: number }
+): Map<string, Rect> {
+  const r = TILE / 2 + TILE_PAD;
+  const size = 2 * r;
+  const rects = new Map<string, Rect>();
+  for (const room of rooms) {
+    const { x, y } = map(room.coords.cx, room.coords.cy);
+    rects.set(room.vnum, { x: x - r, y: y - r, w: size, h: size });
+  }
+  return rects;
+}
+
 function lineRectIntersectionT(
   x1: number,
   y1: number,
@@ -409,15 +426,12 @@ function lineRectIntersectionT(
   y2: number,
   r: Rect
 ): [number, number] | null {
-  let t0 = 0,
-    t1 = 1;
-  const dx = x2 - x1,
-    dy = y2 - y1;
+  let t0 = 0, t1 = 1;
+  const dx = x2 - x1, dy = y2 - y1;
   const p = [-dx, dx, -dy, dy];
   const q = [x1 - r.x, r.x + r.w - x1, y1 - r.y, r.y + r.h - y1];
   for (let i = 0; i < 4; i++) {
-    const pi = p[i],
-      qi = q[i];
+    const pi = p[i], qi = q[i];
     if (pi === 0) {
       if (qi < 0) return null;
     } else {
@@ -478,6 +492,38 @@ function lineMinusRects(
   }
   if (prev < 1) out.push([x1 + (x2 - x1) * prev, y1 + (y2 - y1) * prev, x2, y2]);
   return out;
+}
+
+/* ---------------- colors ---------------- */
+// High-contrast palette for straight edges (Tableau-ish / ColorBrewer style).
+const STRAIGHT_PALETTE = [
+  "#4E79A7", "#F28E2B", "#E15759", "#76B7B2", "#59A14F", "#EDC948",
+  "#B07AA1", "#FF9DA7", "#9C755F", "#BAB0AC", "#86BCB6", "#8CD17D"
+];
+
+// Bright accent palette for curved edges so they pop.
+const CURVE_PALETTE = [
+  "#35A7FF", // vivid blue
+  "#FF6F91", // pink
+  "#FFC75F", // amber
+  "#C34A36", // brick
+  "#7DFFB3", // aqua-green
+  "#B967FF"  // violet
+];
+
+// quick djb2 hash
+function hstr(s: string) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
+  return h >>> 0;
+}
+function pickStraightColor(from: string, to: string, i: number) {
+  const base = hstr(`${from}->${to}`) + i * 131;
+  return STRAIGHT_PALETTE[base % STRAIGHT_PALETTE.length];
+}
+function pickCurveColor(from: string, to: string, i: number) {
+  const base = hstr(`curve:${from}->${to}`) + i * 97;
+  return CURVE_PALETTE[base % CURVE_PALETTE.length];
 }
 
 /* ---------------- main ---------------- */
@@ -556,6 +602,7 @@ export default function OctRenderer({
   }, [rooms, level]);
 
   const labelRects = React.useMemo(() => buildLabelRects(rooms, map), [rooms, map]);
+  const tileRectsAll = React.useMemo(() => buildTileRects(rooms, map), [rooms, map]);
 
   // determine SVG size
   const svgWidth = contentMapper ? contentMapper.width : "100%";
@@ -591,11 +638,14 @@ export default function OctRenderer({
         const mx = (ax + bx) / 2;
         const my = (ay + by) / 2;
 
+        // Build avoid list = labels + tiles (excluding endpoints so the edge can attach)
         const avoid: Rect[] = [];
-        for (const rr of rooms) {
-          const rect = labelRects.get(rr.vnum);
-          if (rect) avoid.push(rect);
-        }
+        rooms.forEach((rr) => {
+          const lab = labelRects.get(rr.vnum);
+          if (lab) avoid.push(lab);
+          const tile = tileRectsAll.get(rr.vnum);
+          if (tile && rr.vnum !== e.from.vnum && rr.vnum !== e.to.vnum) avoid.push(tile);
+        });
 
         const segmentsStraight = lineMinusRects(ax, ay, bx, by, avoid, 6);
         const rev = reverseDir(e.dir);
@@ -612,6 +662,9 @@ export default function OctRenderer({
         let segments = segmentsStraight;
         let arrowTip: { x: number; y: number };
         let arrowDir: { ux: number; uy: number };
+        const strokeColor = SHOULD_CURVE
+          ? pickCurveColor(e.from.vnum, e.to.vnum, i)
+          : pickStraightColor(e.from.vnum, e.to.vnum, i);
 
         if (!SHOULD_CURVE) {
           // Happy path (unchanged)
@@ -644,7 +697,7 @@ export default function OctRenderer({
             y: endPort.y - enterVec.uy * LEAD_IN,
           };
 
-          // control point for a gentle bulge (based on chord mid + perpendicular offset)
+          // control point: perpendicular bulge with robust side choice
           const chordX = leadEnd.x - leadStart.x;
           const chordY = leadEnd.y - leadStart.y;
           const L = Math.hypot(chordX, chordY) || 1;
@@ -653,21 +706,28 @@ export default function OctRenderer({
 
           const midx = (leadStart.x + leadEnd.x) / 2;
           const midy = (leadStart.y + leadEnd.y) / 2;
-          const toCenX = clusterCenter.x - midx;
-          const toCenY = clusterCenter.y - midy;
-          const side = pxn * toCenX + pyn * toCenY > 0 ? -1 : 1;
 
-          const bulge = Math.min(240, Math.max(60, 0.55 * L));
+          const cross = exitVec.ux * chordY - exitVec.uy * chordX;
+          let side = 0;
+          if (Math.abs(cross) > 1e-3) {
+            side = cross > 0 ? 1 : -1;
+          } else {
+            const toCenX = clusterCenter.x - midx;
+            const toCenY = clusterCenter.y - midy;
+            side = pxn * toCenX + pyn * toCenY > 0 ? 1 : -1;
+          }
+
+          const MIN_BULGE = 40;
+          const bulge = Math.max(MIN_BULGE, Math.min(240, 0.55 * L));
           const ctrl = { x: midx + pxn * bulge * side, y: midy + pyn * bulge * side };
 
-          // assemble: startPort -> leadStart (straight), curve leadStart->leadEnd, leadEnd -> endPort (straight)
           const segs: Array<[number, number, number, number]> = [];
 
           // start straight
           for (const s of lineMinusRects(startPort.x, startPort.y, leadStart.x, leadStart.y, avoid, 6))
             segs.push(s);
 
-          // curved middle
+          // curved middle (chopped to tiny segments, each clipped against obstacles)
           const tiny = chopQuadToSegments(
             [leadStart.x, leadStart.y],
             [ctrl.x, ctrl.y],
@@ -699,13 +759,14 @@ export default function OctRenderer({
                 y1={y1}
                 x2={x2}
                 y2={y2}
-                stroke="rgba(255,255,255,0.95)"
+                stroke={strokeColor}
+                strokeOpacity={0.95}
                 strokeWidth={2}
                 strokeLinecap="round"
               />
             ))}
 
-            {/* doors (kept as before: midpoint of straight chord) */}
+            {/* doors (midpoint of straight chord) */}
             {e.door && (e.door as any).type === "simple" && (
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="simple" />
             )}
@@ -713,14 +774,13 @@ export default function OctRenderer({
               <DoorGlyph x={mx} y={my} ux={ux} uy={uy} kind="locked" />
             )}
 
-            {/* arrowhead */}
-            <ArrowHead x={arrowTip.x} y={arrowTip.y} ux={arrowDir.ux} uy={arrowDir.uy} />
+            {/* arrowhead colored to match the edge */}
+            <ArrowHead x={arrowTip.x} y={arrowTip.y} ux={arrowDir.ux} uy={arrowDir.uy} color={strokeColor} />
 
-            {/* implied dotted reverse with the same clearance on its “target” (still straight) */}
+            {/* implied dotted reverse remains straight and lighter */}
             {!e.oneWay &&
               !targetHasReverse &&
               lineMinusRects(
-                // start at the (now in-cleared) target side and leave clearance at the new “target”
                 b.x - ux * (k + margin),
                 by + uy * (insetEnd - (k + margin)),
                 a.x + ux * insetEnd,
@@ -734,7 +794,8 @@ export default function OctRenderer({
                   y1={y1}
                   x2={x2}
                   y2={y2}
-                  stroke="rgba(255,255,255,0.8)"
+                  stroke={strokeColor}
+                  strokeOpacity={0.65}
                   strokeWidth={2}
                   strokeDasharray="6 6"
                   strokeLinecap="round"
