@@ -312,7 +312,14 @@ function DoorGlyph({
         stroke="rgba(0,0,0,0.9)"
         strokeWidth={3}
       />
-      <circle cx={x} cy={y} r={bodyR} fill="none" stroke="#fff" strokeWidth={2} />
+      <circle
+        cx={x}
+        cy={y}
+        r={bodyR}
+        fill="none"
+        stroke="#fff"
+        strokeWidth={2}
+      />
       <path
         d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${
           2 * shackleR
@@ -593,6 +600,7 @@ export default function OctRenderer({
     oneWay: boolean;
     door: ExitDef["door"];
   };
+
   const edges: Edge[] = React.useMemo(() => {
     const out: Edge[] = [];
     const byVnum = new Map<string, Room>();
@@ -688,7 +696,19 @@ export default function OctRenderer({
         // ----- SPECIAL CASE: curve only when declared direction mismatches geometry -----
         const declared = DIR_VEC[e.dir];
         const dot = declared.ux * ux + declared.uy * uy; // 1=aligned, -1=opposite
-        const SHOULD_CURVE = dot < 0.3; // tune threshold
+
+        // classify geometry vs declaration
+        const EPS = 1e-6;
+        const geomAxisAligned = Math.abs(dx) < EPS || Math.abs(dy) < EPS; // pure N/S or E/W
+        const declaredDiagonal =
+          Math.abs(declared.ux) > 0 && Math.abs(declared.uy) > 0;
+        const declaredCardinal = !declaredDiagonal;
+
+        // Force curves for diagonal<->cardinal mismatches; else fallback to angle threshold
+        const SHOULD_CURVE =
+          (declaredDiagonal && geomAxisAligned) ||
+          (declaredCardinal && !geomAxisAligned) ||
+          dot < 0.3;
 
         let segments = segmentsStraight;
         let arrowTip: { x: number; y: number };
@@ -843,8 +863,7 @@ export default function OctRenderer({
                 by + uy * (insetEnd - (k + margin)),
                 a.x + ux * insetEnd,
                 a.y + uy * insetEnd,
-                avoid,
-                6
+                []
               ).map(([x1, y1, x2, y2], si) => (
                 <line
                   key={`rev-${si}`}
