@@ -23,36 +23,31 @@ const HEAD_CLEAR = 10;
 /* ---------------- helpers for two coordinate systems ---------------- */
 // 8-way unit vectors for declared exits (not computed from geometry)
 const DIR_VEC: Record<Direction, { ux: number; uy: number }> = {
-  N:  { ux:  0, uy: -1 },
-  NE: { ux:  Math.SQRT1_2, uy: -Math.SQRT1_2 },
-  E:  { ux:  1, uy:  0 },
-  SE: { ux:  Math.SQRT1_2, uy:  Math.SQRT1_2 },
-  S:  { ux:  0, uy:  1 },
-  SW: { ux: -Math.SQRT1_2, uy:  Math.SQRT1_2 },
-  W:  { ux: -1, uy:  0 },
+  N: { ux: 0, uy: -1 },
+  NE: { ux: Math.SQRT1_2, uy: -Math.SQRT1_2 },
+  E: { ux: 1, uy: 0 },
+  SE: { ux: Math.SQRT1_2, uy: Math.SQRT1_2 },
+  S: { ux: 0, uy: 1 },
+  SW: { ux: -Math.SQRT1_2, uy: Math.SQRT1_2 },
+  W: { ux: -1, uy: 0 },
   NW: { ux: -Math.SQRT1_2, uy: -Math.SQRT1_2 },
-  U:  { ux: 0, uy: 0 },  // not used here
-  D:  { ux: 0, uy: 0 },  // not used here
+  U: { ux: 0, uy: 0 }, // not used here
+  D: { ux: 0, uy: 0 }, // not used here
 };
 
 // Return a point on the octagon edge for a given direction, with a small push out/in.
-function edgePortForDir(
-  cx: number,
-  cy: number,
-  dir: Direction,
-  push: number
-) {
+function edgePortForDir(cx: number, cy: number, dir: Direction, push: number) {
   const r = TILE / 2;
   const k = 0.4142 * r; // same k used in Oct()
   // Edge midpoints for octagon aligned to 8 directions
   const offsets: Record<Exclude<Direction, "U" | "D">, [number, number]> = {
-    N:  [0, -r],
-    NE: [ r, -k],
-    E:  [ r,  0],
-    SE: [ r,  k],
-    S:  [0,  r],
-    SW: [-r,  k],
-    W:  [-r,  0],
+    N: [0, -r],
+    NE: [r, -k],
+    E: [r, 0],
+    SE: [r, k],
+    S: [0, r],
+    SW: [-r, k],
+    W: [-r, 0],
     NW: [-r, -k],
   };
   const dv = DIR_VEC[dir] || { ux: 0, uy: 0 };
@@ -89,7 +84,10 @@ function gridToPx_centered(
 function makeContentMapper(rooms: Room[], pad = 96) {
   if (rooms.length === 0) {
     return {
-      map: (_cx: number, _cy: number) => ({ x: pad + TILE / 2, y: pad + TILE / 2 }),
+      map: (_cx: number, _cy: number) => ({
+        x: pad + TILE / 2,
+        y: pad + TILE / 2,
+      }),
       width: pad * 2 + TILE,
       height: pad * 2 + TILE,
     };
@@ -148,7 +146,9 @@ function quadPoint(
   p2: [number, number]
 ): [number, number] {
   const mt = 1 - t;
-  const a = mt * mt, b = 2 * mt * t, c = t * t;
+  const a = mt * mt,
+    b = 2 * mt * t,
+    c = t * t;
   return [a * p0[0] + b * p1[0] + c * p2[0], a * p0[1] + b * p1[1] + c * p2[1]];
 }
 
@@ -158,7 +158,8 @@ function chopQuadToSegments(
   p2: [number, number],
   stepPx = 10
 ): Array<[number, number, number, number]> {
-  const dx = p2[0] - p0[0], dy = p2[1] - p0[1];
+  const dx = p2[0] - p0[0],
+    dy = p2[1] - p0[1];
   const L = Math.hypot(dx, dy);
   const N = Math.max(6, Math.min(80, Math.ceil(L / stepPx)));
   const pts: [number, number][] = [];
@@ -313,16 +314,21 @@ function DoorGlyph({
       />
       <circle cx={x} cy={y} r={bodyR} fill="none" stroke="#fff" strokeWidth={2} />
       <path
-        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${2 * shackleR},0`}
+        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${
+          2 * shackleR
+        },0`}
         fill="none"
         stroke="rgba(0,0,0,0.9)"
         strokeWidth={3}
       />
       <path
-        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${2 * shackleR},0`}
+        d={`M ${shX - shackleR},${shY} a ${shackleR},${shackleR} 0 0 1 ${
+          2 * shackleR
+        },0`}
         fill="none"
         stroke="#fff"
-        strokeWidth={2} />
+        strokeWidth={2}
+      />
     </g>
   );
 }
@@ -426,12 +432,15 @@ function lineRectIntersectionT(
   y2: number,
   r: Rect
 ): [number, number] | null {
-  let t0 = 0, t1 = 1;
-  const dx = x2 - x1, dy = y2 - y1;
+  let t0 = 0,
+    t1 = 1;
+  const dx = x2 - x1,
+    dy = y2 - y1;
   const p = [-dx, dx, -dy, dy];
   const q = [x1 - r.x, r.x + r.w - x1, y1 - r.y, r.y + r.h - y1];
   for (let i = 0; i < 4; i++) {
-    const pi = p[i], qi = q[i];
+    const pi = p[i],
+      qi = q[i];
     if (pi === 0) {
       if (qi < 0) return null;
     } else {
@@ -474,7 +483,10 @@ function lineMinusRects(
     if (!merged.length || c[0] > merged[merged.length - 1][1]) {
       merged.push([...c]);
     } else {
-      merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], c[1]);
+      merged[merged.length - 1][1] = Math.max(
+        merged[merged.length - 1][1],
+        c[1]
+      );
     }
   }
   const out: Array<[number, number, number, number]> = [];
@@ -490,13 +502,14 @@ function lineMinusRects(
     }
     prev = Math.max(prev, b);
   }
-  if (prev < 1) out.push([x1 + (x2 - x1) * prev, y1 + (y2 - y1) * prev, x2, y2]);
+  if (prev < 1)
+    out.push([x1 + (x2 - x1) * prev, y1 + (y2 - y1) * prev, x2, y2]);
   return out;
 }
 
 /* ---------------- colors ---------------- */
-// Single neutral for straight edges:
-const STRAIGHT_COLOR = "#E6E6E6"; // subtle off-white that pops on dark bg
+// Single neutral color for straight edges.
+const STRAIGHT_COLOR = "rgba(255,255,255,0.95)";
 
 // Bright accent palette for curved edges so they pop.
 const CURVE_PALETTE = [
@@ -505,10 +518,10 @@ const CURVE_PALETTE = [
   "#FFC75F", // amber
   "#C34A36", // brick
   "#7DFFB3", // aqua-green
-  "#B967FF"  // violet
+  "#B967FF", // violet
 ];
 
-// quick djb2 hash (for curves only)
+// quick djb2 hash
 function hstr(s: string) {
   let h = 5381;
   for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
@@ -567,7 +580,10 @@ export default function OctRenderer({
   );
 
   // centroid used by the curve special-case
-  const clusterCenter = React.useMemo(() => roomsCentroidPx(rooms, map), [rooms, map]);
+  const clusterCenter = React.useMemo(
+    () => roomsCentroidPx(rooms, map),
+    [rooms, map]
+  );
 
   // edges list (skip U/D)
   type Edge = {
@@ -582,20 +598,36 @@ export default function OctRenderer({
     const byVnum = new Map<string, Room>();
     for (const r of rooms) byVnum.set(r.vnum, r);
     for (const r of rooms) {
-      for (const [dir, ex] of Object.entries(r.exits) as [Direction, ExitDef][]) {
+      for (const [dir, ex] of Object.entries(r.exits) as [
+        Direction,
+        ExitDef
+      ][]) {
         if (!ex?.to) continue;
         if (dir === "U" || dir === "D") continue;
         const tgt = byVnum.get(ex.to);
         if (!tgt) continue;
-        if ((tgt.coords.vz ?? 0) !== level || (r.coords.vz ?? 0) !== level) continue;
-        out.push({ from: r, to: tgt, dir, oneWay: !!ex.oneWay, door: ex.door ?? null });
+        if ((tgt.coords.vz ?? 0) !== level || (r.coords.vz ?? 0) !== level)
+          continue;
+        out.push({
+          from: r,
+          to: tgt,
+          dir,
+          oneWay: !!ex.oneWay,
+          door: ex.door ?? null,
+        });
       }
     }
     return out;
   }, [rooms, level]);
 
-  const labelRects = React.useMemo(() => buildLabelRects(rooms, map), [rooms, map]);
-  const tileRectsAll = React.useMemo(() => buildTileRects(rooms, map), [rooms, map]);
+  const labelRects = React.useMemo(
+    () => buildLabelRects(rooms, map),
+    [rooms, map]
+  );
+  const tileRectsAll = React.useMemo(
+    () => buildTileRects(rooms, map),
+    [rooms, map]
+  );
 
   // determine SVG size
   const svgWidth = contentMapper ? contentMapper.width : "100%";
@@ -637,7 +669,8 @@ export default function OctRenderer({
           const lab = labelRects.get(rr.vnum);
           if (lab) avoid.push(lab);
           const tile = tileRectsAll.get(rr.vnum);
-          if (tile && rr.vnum !== e.from.vnum && rr.vnum !== e.to.vnum) avoid.push(tile);
+          if (tile && rr.vnum !== e.from.vnum && rr.vnum !== e.to.vnum)
+            avoid.push(tile);
         });
 
         const segmentsStraight = lineMinusRects(ax, ay, bx, by, avoid, 6);
@@ -645,7 +678,12 @@ export default function OctRenderer({
         const targetHasReverse =
           !!e.to.exits?.[rev] && e.to.exits[rev]?.to === e.from.vnum;
 
-        const lastStraight = segmentsStraight[segmentsStraight.length - 1] || [ax, ay, bx, by];
+        const lastStraight = segmentsStraight[segmentsStraight.length - 1] || [
+          ax,
+          ay,
+          bx,
+          by,
+        ];
 
         // ----- SPECIAL CASE: curve only when declared direction mismatches geometry -----
         const declared = DIR_VEC[e.dir];
@@ -663,23 +701,23 @@ export default function OctRenderer({
           // Happy path (unchanged)
           const [lx1, ly1, lx2, ly2] = lastStraight;
           const { ux: lux, uy: luy } = dirUnit(lx2 - lx1, ly2 - ly1);
-          arrowTip  = { x: lx2, y: ly2 };
-          arrowDir  = { ux: lux, uy: luy };
+          arrowTip = { x: lx2, y: ly2 };
+          arrowDir = { ux: lux, uy: luy };
         } else {
           // Curve leaves/arrives on the declared faces with short straight leaders
-          const exitVec  = DIR_VEC[e.dir];
+          const exitVec = DIR_VEC[e.dir];
           const enterVec = DIR_VEC[reverseDir(e.dir)];
 
           const startPort = edgePortForDir(a.x, a.y, e.dir, +8);
-          const endOuter  = edgePortForDir(b.x, b.y, reverseDir(e.dir), +10);
-          const endPort   = {
+          const endOuter = edgePortForDir(b.x, b.y, reverseDir(e.dir), +10);
+          const endPort = {
             x: endOuter.x - enterVec.ux * HEAD_CLEAR,
             y: endOuter.y - enterVec.uy * HEAD_CLEAR,
           };
 
           // leaders
-          const LEAD_OUT = 55; // px
-          const LEAD_IN  = 24; // px
+          const LEAD_OUT = 65; // px
+          const LEAD_IN = 35; // px
 
           const leadStart = {
             x: startPort.x + exitVec.ux * LEAD_OUT,
@@ -694,16 +732,19 @@ export default function OctRenderer({
           const chordX = leadEnd.x - leadStart.x;
           const chordY = leadEnd.y - leadStart.y;
           const L = Math.hypot(chordX, chordY) || 1;
-          const ccUx = chordX / L, ccUy = chordY / L;
-          const pxn = -ccUy, pyn = ccUx;
+          const ccUx = chordX / L,
+            ccUy = chordY / L;
+          const pxn = -ccUy,
+            pyn = ccUx;
 
           const midx = (leadStart.x + leadEnd.x) / 2;
           const midy = (leadStart.y + leadEnd.y) / 2;
 
+          // Decide bend side. SVG Y increases downward, so invert the usual cross sign.
           const cross = exitVec.ux * chordY - exitVec.uy * chordX;
-          let side = 0;
+          let side: number;
           if (Math.abs(cross) > 1e-3) {
-            side = cross > 0 ? 1 : -1;
+            side = cross < 0 ? 1 : -1; // inverted sign vs math coords
           } else {
             const toCenX = clusterCenter.x - midx;
             const toCenY = clusterCenter.y - midy;
@@ -712,12 +753,22 @@ export default function OctRenderer({
 
           const MIN_BULGE = 40;
           const bulge = Math.max(MIN_BULGE, Math.min(240, 0.55 * L));
-          const ctrl = { x: midx + pxn * bulge * side, y: midy + pyn * bulge * side };
+          const ctrl = {
+            x: midx + pxn * bulge * side,
+            y: midy + pyn * bulge * side,
+          };
 
           const segs: Array<[number, number, number, number]> = [];
 
           // start straight
-          for (const s of lineMinusRects(startPort.x, startPort.y, leadStart.x, leadStart.y, avoid, 6))
+          for (const s of lineMinusRects(
+            startPort.x,
+            startPort.y,
+            leadStart.x,
+            leadStart.y,
+            avoid,
+            6
+          ))
             segs.push(s);
 
           // curved middle (chopped to tiny segments, each clipped against obstacles)
@@ -728,11 +779,19 @@ export default function OctRenderer({
             10
           );
           for (const [x1, y1, x2, y2] of tiny) {
-            for (const p of lineMinusRects(x1, y1, x2, y2, avoid, 6)) segs.push(p);
+            for (const p of lineMinusRects(x1, y1, x2, y2, avoid, 6))
+              segs.push(p);
           }
 
           // final straight into the face
-          for (const s of lineMinusRects(leadEnd.x, leadEnd.y, endPort.x, endPort.y, avoid, 6))
+          for (const s of lineMinusRects(
+            leadEnd.x,
+            leadEnd.y,
+            endPort.x,
+            endPort.y,
+            avoid,
+            6
+          ))
             segs.push(s);
 
           segments = segs;
@@ -768,7 +827,13 @@ export default function OctRenderer({
             )}
 
             {/* arrowhead colored to match the edge */}
-            <ArrowHead x={arrowTip.x} y={arrowTip.y} ux={arrowDir.ux} uy={arrowDir.uy} color={strokeColor} />
+            <ArrowHead
+              x={arrowTip.x}
+              y={arrowTip.y}
+              ux={arrowDir.ux}
+              uy={arrowDir.uy}
+              color={strokeColor}
+            />
 
             {/* implied dotted reverse remains straight and lighter */}
             {!e.oneWay &&

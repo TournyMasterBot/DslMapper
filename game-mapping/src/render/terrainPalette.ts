@@ -13,6 +13,7 @@ export const TERRAIN_FILL: Record<TerrainKind, string> = {
   [TerrainKind.Tundra]: "#77B5A9", // pale teal
   [TerrainKind.Ocean]: "#151B54",
   [TerrainKind.Swim]: "#0041C2",
+  [TerrainKind.Underwater]: "#0C2766"
 };
 
 // Stable order for UI (legend, dropdowns, etc.)
@@ -28,4 +29,5 @@ export const TERRAIN_ORDER: TerrainKind[] = [
   TerrainKind.Tundra,
   TerrainKind.Ocean,
   TerrainKind.Swim,
+
 ];

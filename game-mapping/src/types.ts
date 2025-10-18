@@ -168,17 +168,18 @@ export type MapDoc = MapDocV1
 export type RoomPatch = Partial<Omit<Room, 'vnum'>>
 
 export const enum TerrainKind {
-  Unknown  = "unknown",
-  Indoors  = "indoors",
-  City     = "city",
-  Desert   = "desert",
-  VeryIcy  = "very_icy",
-  Hills    = "hills",
-  Forest   = "forest",
-  Fields   = "fields",
-  Tundra   = "tundra",
-  Ocean    = "ocean",
-  Swim     = "swim"
+  Unknown     = "unknown",
+  Indoors     = "indoors",
+  City        = "city",
+  Desert      = "desert",
+  VeryIcy     = "very_icy",
+  Hills       = "hills",
+  Forest      = "forest",
+  Fields      = "fields",
+  Tundra      = "tundra",
+  Ocean       = "ocean",
+  Swim        = "swim",
+  Underwater  = "underwater"
 }
 export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Unknown,
@@ -191,5 +192,6 @@ export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Fields,
   TerrainKind.Tundra,
   TerrainKind.Ocean,
-  TerrainKind.Swim
+  TerrainKind.Swim,
+  TerrainKind.Underwater
 ];
