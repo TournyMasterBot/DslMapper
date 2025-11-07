@@ -169,7 +169,7 @@ export type RoomPatch = Partial<Omit<Room, 'vnum'>>
 
 export const enum TerrainKind {
   Unknown     = "unknown",
-  Indoors     = "indoors",
+  Inside      = "inside",
   City        = "city",
   Desert      = "desert",
   VeryIcy     = "very_icy",
@@ -179,11 +179,12 @@ export const enum TerrainKind {
   Tundra      = "tundra",
   Ocean       = "ocean",
   Swim        = "swim",
-  Underwater  = "underwater"
+  Underwater  = "underwater",
+  Underground = "underground"
 }
 export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Unknown,
-  TerrainKind.Indoors,
+  TerrainKind.Inside,
   TerrainKind.City,
   TerrainKind.Desert,
   TerrainKind.VeryIcy,
@@ -193,5 +194,6 @@ export const TERRAIN_OPTIONS: TerrainKind[] = [
   TerrainKind.Tundra,
   TerrainKind.Ocean,
   TerrainKind.Swim,
-  TerrainKind.Underwater
+  TerrainKind.Underwater,
+  TerrainKind.Underground
 ];

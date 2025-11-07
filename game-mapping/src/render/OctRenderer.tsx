@@ -601,6 +601,11 @@ export default function OctRenderer({
     door: ExitDef["door"];
   };
 
+  React.useEffect(() => {
+    console.log("Rooms array:", rooms);
+    console.log("Current level:", level);
+  }, [rooms, level]);
+
   const edges: Edge[] = React.useMemo(() => {
     const out: Edge[] = [];
     const byVnum = new Map<string, Room>();
@@ -614,8 +619,12 @@ export default function OctRenderer({
         if (dir === "U" || dir === "D") continue;
         const tgt = byVnum.get(ex.to);
         if (!tgt) continue;
-        if ((tgt.coords.vz ?? 0) !== level || (r.coords.vz ?? 0) !== level)
+        if ((tgt.coords.vz ?? 0) !== level || (r.coords.vz ?? 0) !== level) {
+          console.log(
+            `Excluding edge from ${r.vnum} to ${ex.to} due to level mismatch.`
+          );
           continue;
+        }
         out.push({
           from: r,
           to: tgt,

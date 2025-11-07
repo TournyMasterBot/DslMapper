@@ -1,86 +1,111 @@
-import React from 'react'
-import { useMap } from '@state/mapStore'
+import React from "react";
+import { useMap } from "@state/mapStore";
 
-const LVL_KEY = 'dslmapper:viewLevel'
+const LVL_KEY = "dslmapper:viewLevel";
 
 export default function Toolbar() {
-  const { state, dispatch } = useMap()
-  const current = typeof state.level === 'number' ? state.level : 0
-  const selectedVnum = state.selected || null
+  const { state, dispatch } = useMap();
+  const current = typeof state.level === "number" ? state.level : 0;
+  const selectedVnum = state.selected || null;
 
   // keyboard shortcuts: Undo / Redo
-  const canUndo = state._past.length > 0
-  const canRedo = state._future.length > 0
+  const canUndo = state._past.length > 0;
+  const canRedo = state._future.length > 0;
 
   React.useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      const z = e.key.toLowerCase() === 'z'
-      if (!(e.ctrlKey || e.metaKey) || !z) return
-      e.preventDefault()
+      const z = e.key.toLowerCase() === "z";
+      if (!(e.ctrlKey || e.metaKey) || !z) return;
+      e.preventDefault();
       if (e.shiftKey) {
-        if (canRedo) dispatch({ type: 'REDO' })
+        if (canRedo) dispatch({ type: "REDO" });
       } else {
-        if (canUndo) dispatch({ type: 'UNDO' })
+        if (canUndo) dispatch({ type: "UNDO" });
       }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [canUndo, canRedo, dispatch])
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [canUndo, canRedo, dispatch]);
 
   // Seed editor level from localStorage (if renderer was opened first).
   React.useEffect(() => {
-    const raw = localStorage.getItem(LVL_KEY)
-    if (raw != null && raw !== '' && !Number.isNaN(Number(raw))) {
-      const n = Number(raw)
+    const raw = localStorage.getItem(LVL_KEY);
+    if (raw != null && raw !== "" && !Number.isNaN(Number(raw))) {
+      const n = Number(raw);
       if (n !== current) {
-        dispatch({ type: 'SET_LEVEL', level: n })
+        dispatch({ type: "SET_LEVEL", level: n });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const setLevel = (level: number) => {
-    dispatch({ type: 'SET_LEVEL', level })
+    dispatch({ type: "SET_LEVEL", level });
     try {
-      localStorage.setItem(LVL_KEY, String(level))
+      localStorage.setItem(LVL_KEY, String(level));
     } catch {
       /* ignore quota */
     }
-  }
+  };
 
   const openRenderer = () => {
-    const sel = selectedVnum ? state.doc.rooms[selectedVnum] : null
+    const { doc } = state;
+    const sel = selectedVnum ? doc.rooms[selectedVnum] : null;
 
-    const base = window.location.href.split('#')[0] // absolute origin w/o hash
-    const params = new URLSearchParams()
+    const base = window.location.href.split("#")[0]; // absolute origin w/o hash
+    const params = new URLSearchParams();
 
     // prefer selected room’s level/coords if present
-    const level = sel ? sel.coords.vz : current
-    params.set('level', String(level))
+    const level = sel ? sel.coords.vz : current;
+    params.set("level", String(level));
 
     // Also persist to the cross-tab channel so the new tab opens at this level
-    try { localStorage.setItem(LVL_KEY, String(level)) } catch {}
+    try {
+      localStorage.setItem(LVL_KEY, String(level));
+    } catch {}
 
-    let worldId = sel?.category?.worldId ?? 'all'
-    let continentId = sel?.category?.continentId ?? 'all'
-    let areaId = sel?.category?.areaId ?? 'all'
+    // Start with whatever the room already has
+    let worldId = sel?.category?.worldId as string | undefined;
+    let continentId = sel?.category?.continentId as string | undefined;
+    let areaId = sel?.category?.areaId as string | undefined;
 
-    if (sel) {
-      params.set('vnum', sel.vnum)
-      params.set('cx', String(sel.coords.cx))
-      params.set('cy', String(sel.coords.cy))
+    // If we only have areaId, derive world/continent from the catalog
+    if (areaId && (!worldId || !continentId)) {
+      const areaMeta = doc?.meta?.catalog?.areas[areaId];
+      if (areaMeta) {
+        if (!worldId) worldId = areaMeta.worldId;
+        if (!continentId) continentId = areaMeta.continentId;
+      }
     }
 
-    const absolute = `${base}#/renderer/${encodeURIComponent(worldId)}/${encodeURIComponent(continentId)}/${encodeURIComponent(areaId)}?${params.toString()}`
-    window.open(absolute, '_blank', 'noopener')
-  }
+    // Final fallback
+    worldId ??= "all";
+    continentId ??= "all";
+    areaId ??= "all";
+
+    if (sel) {
+      params.set("vnum", sel.vnum);
+      params.set("cx", String(sel.coords.cx));
+      params.set("cy", String(sel.coords.cy));
+    }
+
+    const absolute =
+      `${base}#/renderer/${encodeURIComponent(worldId)}` +
+      `/${encodeURIComponent(continentId)}` +
+      `/${encodeURIComponent(areaId)}?${params.toString()}`;
+
+    window.open(absolute, "_blank", "noopener");
+  };
 
   return (
-    <div className="toolbar" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <div
+      className="toolbar"
+      style={{ display: "flex", gap: 8, alignItems: "center" }}
+    >
       {/* Undo / Redo */}
       <button
         type="button"
-        onClick={() => dispatch({ type: 'UNDO' })}
+        onClick={() => dispatch({ type: "UNDO" })}
         disabled={!canUndo}
         title="Undo (Ctrl/Cmd+Z)"
       >
@@ -88,7 +113,7 @@ export default function Toolbar() {
       </button>
       <button
         type="button"
-        onClick={() => dispatch({ type: 'REDO' })}
+        onClick={() => dispatch({ type: "REDO" })}
         disabled={!canRedo}
         title="Redo (Ctrl/Cmd+Shift+Z)"
       >
@@ -99,10 +124,12 @@ export default function Toolbar() {
       <button
         type="button"
         onClick={() => {
-          const v = prompt('New room vnum?')?.trim()
+          const v = prompt("New room vnum?")?.trim();
           if (v) {
-            dispatch({ type: 'ADD_ROOM', vnum: v })
-            requestAnimationFrame(() => dispatch({ type: 'SELECT_ROOM', vnum: v }))
+            dispatch({ type: "ADD_ROOM", vnum: v });
+            requestAnimationFrame(() =>
+              dispatch({ type: "SELECT_ROOM", vnum: v })
+            );
           }
         }}
       >
@@ -112,9 +139,9 @@ export default function Toolbar() {
       <button
         type="button"
         onClick={() => {
-          if (!selectedVnum) return
+          if (!selectedVnum) return;
           if (confirm(`Delete room ${selectedVnum}?`)) {
-            dispatch({ type: 'DELETE_ROOM', vnum: selectedVnum })
+            dispatch({ type: "DELETE_ROOM", vnum: selectedVnum });
           }
         }}
         disabled={!selectedVnum}
@@ -123,10 +150,19 @@ export default function Toolbar() {
       </button>
 
       {/* Renderer */}
-      <button type="button" onClick={openRenderer}>Open Renderer ↗</button>
+      <button type="button" onClick={openRenderer}>
+        Open Renderer ↗
+      </button>
 
       {/* Level control */}
-      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
+      <div
+        style={{
+          marginLeft: "auto",
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+        }}
+      >
         <label>View Level:</label>
         <input
           type="number"
@@ -134,9 +170,13 @@ export default function Toolbar() {
           onChange={(e) => setLevel(Number(e.target.value))}
           style={{ width: 72 }}
         />
-        <button type="button" onClick={() => setLevel(current + 1)}>▲</button>
-        <button type="button" onClick={() => setLevel(current - 1)}>▼</button>
+        <button type="button" onClick={() => setLevel(current + 1)}>
+          ▲
+        </button>
+        <button type="button" onClick={() => setLevel(current - 1)}>
+          ▼
+        </button>
       </div>
     </div>
-  )
+  );
 }

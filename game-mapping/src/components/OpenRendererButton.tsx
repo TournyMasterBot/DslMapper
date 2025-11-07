@@ -5,12 +5,27 @@ export default function OpenRendererButton() {
   const { state } = useMap()
 
   const openRenderer = () => {
-    const sel = state.selected ? state.doc.rooms[state.selected] : null
-    const cat = sel?.category
-    const worldId = encodeURIComponent(cat?.worldId ?? 'all')
-    const contId  = encodeURIComponent(cat?.continentId ?? 'all')
-    const areaId  = encodeURIComponent(cat?.areaId ?? 'all')
-    const level   = sel?.coords.vz ?? state.level ?? 0
+    const { doc } = state
+    const sel = state.selected ? doc.rooms[state.selected] : null
+
+    let worldId: string | undefined = sel?.category?.worldId
+    let continentId: string | undefined = sel?.category?.continentId
+    let areaId: string | undefined = sel?.category?.areaId
+
+    // If only areaId is present, derive from catalog
+    if (areaId && (!worldId || !continentId)) {
+      const areaMeta = doc?.meta?.catalog?.areas[areaId]
+      if (areaMeta) {
+        if (!worldId) worldId = areaMeta.worldId
+        if (!continentId) continentId = areaMeta.continentId
+      }
+    }
+
+    worldId ??= 'all'
+    continentId ??= 'all'
+    areaId ??= 'all'
+
+    const level = sel?.coords.vz ?? state.level ?? 0
 
     const base = window.location.href.split('#')[0] // absolute base, no hash
     const search = new URLSearchParams({
@@ -20,7 +35,10 @@ export default function OpenRendererButton() {
       cy: sel ? String(sel.coords.cy) : '',
     }).toString()
 
-    const absolute = `${base}#/renderer/${worldId}/${contId}/${areaId}?${search}`
+    const absolute = `${base}#/renderer/${encodeURIComponent(worldId)}/${encodeURIComponent(
+      continentId,
+    )}/${encodeURIComponent(areaId)}?${search}`
+
     window.open(absolute, '_blank', 'noopener')
   }
 
